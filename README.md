@@ -1,4 +1,4 @@
-![IMB-logo](NGSpipe2go/resources/IMB_logo.png)
+![IMB-logo](resources/IMB_logo.png)
 
 # GLOE-Pipe #
 
