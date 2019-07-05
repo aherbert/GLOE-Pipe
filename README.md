@@ -23,10 +23,10 @@ The Genome-wide Ligation of 3'OH Ends sequencing (GLOE-seq) is a sensitive metho
 ### Get GLOE-Pipe to your project ###
 This can be done cloning the most recent development version from the GitLab repository
 
-    git clone https://gitlab.com/GPetrosino/GLOE-Pipe.git <project_dir>
+    git clone https://gitlab.com/GPetrosino/GLOE-Pipe.git <project_dir>/GLOEPipe
     cd <project_dir>
-    ln -s NGSpipe2go/pipelines/GLOEseq/* . 
-    ln -s NGSpipe2go/modules/GLOEseq/essential.vars.groovy .  
+    ln -s GLOEPipe/pipelines/GLOEseq/* . 
+    ln -s GLOEPipe/modules/GLOEseq/essential.vars.groovy .  
 
 ### Customise GLOE-Pipe to your needs ###
 
