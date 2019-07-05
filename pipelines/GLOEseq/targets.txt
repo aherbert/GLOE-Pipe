@@ -1,0 +1,4 @@
+IP	IPname	INPUT	INPUTname	group
+Digested_sample_1.bed	Digested_sample_1	Undigested_sample_1.bed	Undigested_sample_1	Digested_vs_Undigested_S1
+Digested_sample_2.bed	Digested_sample_2	Undigested_sample_2.bed	Undigested_sample_2	Digested_vs_Undigested_S2
+Digested_sample_2.bed	Digested_sample_3	Undigested_sample_3.bed	Undigested_sample_3	Digested_vs_Undigested_S3
