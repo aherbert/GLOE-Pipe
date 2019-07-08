@@ -50,3 +50,7 @@ Start running GLOE-Pipe
 
     bpipe run gloeseq.pipeline.groovy rawdata/*.fastq.gz
 
+## Notes ##
+
+The REs folder contains bed files including break sites of restriction endonucleases used in the GLOE-seq paper.
+The break sites overlapping transposons, telomeres and mtDNA on yeast genome are excluded.
