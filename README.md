@@ -17,7 +17,7 @@ The Genome-wide Ligation of 3'OH Ends sequencing (GLOE-seq) is a sensitive metho
 
 #### Files required ####
 - targets.txt (sample names)
-- raw reads (.fastq.gz) or mapped data (.bam)
+- raw reads (.fastq.gz)
 
 ## Preparations to run ##
 
