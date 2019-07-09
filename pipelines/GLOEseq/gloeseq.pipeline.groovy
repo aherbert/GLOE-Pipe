@@ -46,18 +46,20 @@ load MODULE_FOLDER + "GLOEseq/bed2bz2.module.groovy"
 load MODULE_FOLDER + "miscellaneous/collectbpipes.module.2.groovy"
 
 
-//MAIN PIPELINE TASK (direct mode - default) 
+//MAIN PIPELINE TASK (indirect mode - default)
 run {
-	    "%.fastq.gz" * 
-	   [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd, macs2 ] ] ]  + 
-	   [ breaks_annotation, breaks_detected ] + bed2bz2 + collectBpipeLogs 
+            "%.fastq.gz" *
+           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedI + [ bedcoverage, bed2bw + rfd, macs2 ] ] ]  +
+           [ breaks_annotation, breaks_detected ] + bed2bz2 + collectBpipeLogs
 }
 
 
-//MAIN PIPELINE TASK (indirect mode - optional)
+//MAIN PIPELINE TASK (direct mode - optional) 
 //run {
-//            "%.fastq.gz" *
-//           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedI + [ bedcoverage, bed2bw + rfd, macs2 ] ] ]  +
-//           [ breaks_annotation, breaks_detected ] + bed2bz2 + collectBpipeLogs
+//	    "%.fastq.gz" * 
+//	   [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd, macs2 ] ] ]  + 
+//	   [ breaks_annotation, breaks_detected ] + bed2bz2 + collectBpipeLogs 
 //}
+
+
 
