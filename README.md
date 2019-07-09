@@ -49,12 +49,12 @@ Using GNU Screen (for persistence) load the bpipe module customised for the Slur
     screen
     module load bpipe/0.9.9.3.slurm
 
-Start running GLOE-Pipe (direct mode as default)
+Start running GLOE-Pipe (indirect mode as default)
 
     bpipe run gloeseq.pipeline.groovy rawdata/*.fastq.gz
 
 ## Notes ##
-To use indirect mode the main pipeline needs to be modified in the gloeseq.pipeline.groovy file.
+To use direct mode the main pipeline needs to be changed in the gloeseq.pipeline.groovy file.
 
 The REs folder contains bed files including break sites of restriction endonucleases used in the GLOE-seq paper.
 The break sites overlapping transposons, telomeres and mtDNA on yeast genome are excluded.
