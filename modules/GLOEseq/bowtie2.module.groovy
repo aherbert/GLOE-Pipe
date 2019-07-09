@@ -1,4 +1,4 @@
-bowtie2_se = {
+bowtie2 = {
     doc title: "Bowtie2 SE alignment",
         desc:  "Align single end reads",
         constraints: "Samtools multithreaded version expected (>=1.2).",
@@ -25,6 +25,6 @@ bowtie2_se = {
             bowtie2 $BOWTIE_FLAGS -x $BOWTIE_REF $input | samtools view $SAMTOOLS_VIEW_FLAG1 - | samtools sort $SAMTOOLS_SORT_FLAGS -T $TMPDIR/\$(basename $output.prefix)_bowtie2_sorted - > ${output.prefix}_bowtie2_sorted.bam &&
             samtools view $SAMTOOLS_VIEW_FLAG2 ${output.prefix}_bowtie2_sorted.bam | samtools sort $BOWTIE_SAMTOOLS_THREADS -T $TMPDIR/\$(basename $output.prefix) -o $output &&
             samtools index ${output.prefix}_bowtie2_sorted.bam
-        ""","bowtie2_se"
+        ""","bowtie2"
     }
 }
