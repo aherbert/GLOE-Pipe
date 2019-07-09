@@ -4,6 +4,8 @@
 
 The Genome-wide Ligation of 3'OH Ends sequencing (GLOE-seq) is a sensitive method to monitor double-strand breaks (DSBs) and single-strand breaks (SSBs) genome-wide at base-pair resolution.
 
+A flowchart for the GLOE-Pipe is given [here](https://www.draw.io/?state=%7B%22ids%22:%5B%2212Ke7Tz_CBC-Hke5WHT6FVtbFMwhMCQew%22%5D,%22action%22:%22open%22,%22userId%22:%22102129363996166047673%22%7D#G12Ke7Tz_CBC-Hke5WHT6FVtbFMwhMCQew).
+
 ## Prerequisites ##
 #### Programs required ####
 - Trimmomatic
