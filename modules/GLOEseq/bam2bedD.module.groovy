@@ -1,6 +1,6 @@
-bam2bed = {
-	doc title: "bam2bed",
-		desc:  "Convert BAM file to bed and the perl code identifies the first base before the 5' of each read",
+bam2bedD = {
+	doc title: "bam2bedD",
+		desc:  "Convert BAM file to bed and the perl code identifies the first base  each read on the opposite strand (direct mode)",
 		constraints: "none.",
 		bpipe_version: "tested with bpipe 0.9.9.3.slurm",
 		author: "Giuseppe Petrosino"
@@ -32,7 +32,7 @@ bam2bed = {
 			module load bedtools/${BEDTOOLS_VERSION} &&
 
 			bamToBed -i $input > ${output.prefix}.reads.bed &&
-			perl ${TOOL_GLOEseq}/getFirstBase.pl ${output.prefix}.reads.bed | sort -k1,1 -k2,2n -k 6 - |  awk '(\$2 >= 0)' > ${output.prefix}.sites.bed &&
+			perl ${TOOL_GLOEseq}/direct_mode.pl ${output.prefix}.reads.bed | sort -k1,1 -k2,2n -k 6 - |  awk '(\$2 >= 0)' > ${output.prefix}.sites.bed &&
 			awk  '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" "0" "\\t" \$6}' ${output.prefix}.sites.bed > $output.bed &&
 			grep "+" $output.bed > ${output.prefix}.for.bed &&
 			grep "-" $output.bed > ${output.prefix}.rev.bed &&
@@ -52,7 +52,6 @@ bam2bed = {
 			mv ${output.prefix}.tpm.bed.bz2 ${TPM}/ 
 
 
-		""","bam2bed"
+		""","bam2bedD"
 	}
 }
-
