@@ -1,4 +1,4 @@
-MODULE_FOLDER="./NGSpipe2go/modules/"
+MODULE_FOLDER="./GLOEPipe/modules/"
 
 load MODULE_FOLDER + "GLOEseq/essential.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/tool.locations.groovy"
@@ -16,8 +16,11 @@ load MODULE_FOLDER + "GLOEseq/bowtie2.module.groovy"
 load MODULE_FOLDER + "GLOEseq/bamindexer.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bamindexer.module.groovy"
 
-load MODULE_FOLDER + "GLOEseq/bam2bed.vars.groovy"
-load MODULE_FOLDER + "GLOEseq/bam2bed.module.groovy"
+load MODULE_FOLDER + "GLOEseq/bam2bedD.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/bam2bedD.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/bam2bedI.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/bam2bedI.module.groovy"
 
 load MODULE_FOLDER + "GLOEseq/bedcoverage.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bedcoverage.module.groovy"
@@ -43,10 +46,18 @@ load MODULE_FOLDER + "GLOEseq/bed2bz2.module.groovy"
 load MODULE_FOLDER + "miscellaneous/collectbpipes.module.2.groovy"
 
 
-//MAIN PIPELINE TASK
+//MAIN PIPELINE TASK (direct mode - default) 
 run {
 	    "%.fastq.gz" * 
-	   [ FastQC, Trimmomatic + [ FastQC, bowtie2_se + BAMindexer + bam2bed + [ bedcoverage, bed2bw + rfd, macs2 ] ] ]  + 
+	   [ FastQC, Trimmomatic + [ FastQC, bowtie2_se + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd, macs2 ] ] ]  + 
 	   [ breaks_annotation, breaks_detected ] + bed2bz2 + collectBpipeLogs 
 }
+
+
+//MAIN PIPELINE TASK (indirect mode - optional)
+//run {
+//            "%.fastq.gz" *
+//           [ FastQC, Trimmomatic + [ FastQC, bowtie2_se + BAMindexer + bam2bedI + [ bedcoverage, bed2bw + rfd, macs2 ] ] ]  +
+//           [ breaks_annotation, breaks_detected ] + bed2bz2 + collectBpipeLogs
+//}
 
