@@ -11,8 +11,9 @@ The Genome-wide Ligation of 3'OH Ends sequencing (GLOE-seq) is a sensitive metho
 - Bowtie 2
 - Samtools
 - BED tools
-- kentUtils
+- UCSC utilities
 - MACS2
+- ChIPSeeker
 
 #### Files required ####
 - targets.txt (sample names)
@@ -46,11 +47,12 @@ Using GNU Screen (for persistence) load the bpipe module customised for the Slur
     screen
     module load bpipe/0.9.9.3.slurm
 
-Start running GLOE-Pipe 
+Start running GLOE-Pipe (direct mode as default)
 
     bpipe run gloeseq.pipeline.groovy rawdata/*.fastq.gz
 
 ## Notes ##
+To use indirect mode the main pipeline needs to be modified in the gloeseq.pipeline.groovy file.
 
 The REs folder contains bed files including break sites of restriction endonucleases used in the GLOE-seq paper.
 The break sites overlapping transposons, telomeres and mtDNA on yeast genome are excluded.
