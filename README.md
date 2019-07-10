@@ -20,11 +20,11 @@ The GLOE-Pipe is designed to run in high-performance cluster (HPC) environment w
 - MACS2
 - Deeptools
 - R
-- - ChIPseeker
-- - rtracklayer
-- - regioneR
-- - Cairo
-- - openxlsx
+  - ChIPseeker
+  - rtracklayer
+  - regioneR
+  - Cairo
+  - openxlsx
 
 #### Files required ####
 - targets.txt (sample names)
