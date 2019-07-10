@@ -12,9 +12,9 @@ ESSENTIAL_THREADS=8 // number of threads for parallel tasks
 ESSENTIAL_DUP="all" // relevant for MACS2 it instructs macs2 to keep duplicate reads
 
 
-ESSENTIAL_RE1=ESSENTIAL_PROJECT + "/NGSpipe2go/tools/REs/BsrDI.bed" // Expected breaks on yeast genome
-ESSENTIAL_RE2=ESSENTIAL_PROJECT + "/NGSpipe2go/tools/REs/Nb_BsrDI.bed" // Expected breaks on yeast genome
-ESSENTIAL_RE3=ESSENTIAL_PROJECT + "/NGSpipe2go/tools/REs/NotI.bed" // Expected breaks on yeast genome
+ESSENTIAL_RE1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected breaks on yeast genome
+ESSENTIAL_RE2=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/Nb_BsrDI.bed" // Expected breaks on yeast genome
+ESSENTIAL_RE3=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI.bed" // Expected breaks on yeast genome
 
 
 //global vars that will be reused in some global vars
