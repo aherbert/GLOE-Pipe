@@ -17,7 +17,9 @@
 ############################################################################
 options(stringsAsFactors=FALSE)
 library(ChIPseeker)
-library(WriteXLS)
+#library(clusterProfiler)
+#library(GenomicFeatures)
+library(openxlsx)
 library(Cairo)
 library(regioneR)
 
@@ -47,6 +49,7 @@ if (!is.numeric(regionTSS)) stop("regionTSS not numeric. Run with:\n",runstr)
 
 breakFiles <-list.files(breakData,pattern=".bed", full.names = TRUE) # list of the full path of the .bed file 
 breaks <- lapply(breakFiles, toGRanges) # read all the bed files using 'toGRanges' function
+breaks <- breaks[lapply(breaks,length)>0] # select empty bed files
 chr.size <- read.table(file = index, sep="\t")
 
 if(transcriptType!="Bioconductor"){ # check the input format for the transcript annotation
@@ -63,6 +66,7 @@ if(orgDb!=""){ # check if genome wide annotation should be used
   breakAnno <- lapply(breaks, annotatePeak, TxDb=txdb, tssRegion=c(-regionTSS,regionTSS), sameStrand=TRUE)  
 }
 
+breakFiles  <- breakFiles[which(lengths(breaks)>0)] # remove the filenames of empty bed files
 filename <- strsplit(basename(breakFiles), "_macs2_summits.bed") # take the filenames and put it as names for the plots
 names(breakAnno) <- filename
 
@@ -112,7 +116,7 @@ for(i in 1:length(breakAnno)){
 
 # create xls output contains the breaks annotation
 outputData <- lapply(breakAnno, as.data.frame)
-WriteXLS("outputData", ExcelFileName=paste0(out, "/Breaks_Annotation.xls"))
+write.xlsx("outputData", file=paste0(out, "/Breaks_Annotation.xls"))
 
 # save the sessionInformation
 writeLines(capture.output(sessionInfo()), paste(out, "/GLOEseq_Breaks_Annotation_session_info.txt", sep=""))
