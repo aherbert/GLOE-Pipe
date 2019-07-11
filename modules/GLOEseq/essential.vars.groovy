@@ -1,5 +1,5 @@
-ESSENTIAL_PROJECT=".../project"   // full project directory path
-ESSENTIAL_BOWTIE_REF=".../genome" // full path to reference index files Bowtie2
+ESSENTIAL_PROJECT=".../project"   // full path to the project directory
+ESSENTIAL_BOWTIE_REF=".../genome" // full path to the reference index files for Bowtie2
 ESSENTIAL_BOWTIE_GENOME=".../genome.fa" // full path to the reference genome FASTA file
 ESSENTIAL_BOWTIE_GENOME_INDEX="../saccer3.chrom.sizes" // chromosome sizes file of the reference genome
 ESSENTIAL_SAMPLE_PREFIX=""  // sample prefix to be trimmed in the results and reports
@@ -9,12 +9,12 @@ ESSENTIAL_ANNODB="org.Sc.sgd.db"                    // needed for breaks annotat
 ESSENTIAL_FRAGLEN=200 // mean length of library inserts and also minimum peak size called by MACS2
 ESSENTIAL_MACS2_GSIZE="1.20E+07" // mappable genome size for MACS2 
 ESSENTIAL_THREADS=8 // number of threads for parallel tasks
-ESSENTIAL_DUP="all" // relevant for MACS2 it instructs macs2 to keep duplicate reads
+ESSENTIAL_DUP="all" // relevant for MACS2, it instructs it to keep duplicate reads
 
 
-ESSENTIAL_RE1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected breaks on yeast genome
-ESSENTIAL_RE2=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/Nb_BsrDI.bed" // Expected breaks on yeast genome
-ESSENTIAL_RE3=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI.bed" // Expected breaks on yeast genome
+ESSENTIAL_RE1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected BsrDI breaks in the yeast genome
+ESSENTIAL_RE2=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/Nb_BsrDI.bed" // Expected NbBsrDI breaks in the yeast genome
+ESSENTIAL_RE3=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI.bed" // Expected NotI breaks in the yeast genome
 
 
 //global vars that will be reused in some global vars
@@ -37,4 +37,3 @@ READS=PROJECT + "/bed/reads"
 SITES=PROJECT + "/bed/sites"
 COUNTS=PROJECT + "/bed/counts"
 TPM=PROJECT + "/bed/tpm"
-
