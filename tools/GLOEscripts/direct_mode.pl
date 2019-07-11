@@ -1,4 +1,4 @@
-#This Perl code identifies the first base before the 5' of each read
+#This Perl code identifies the first base of each read on the opposite strand (direct mode)
 #!/usr/bin/perl
 use strict;
 use warnings;
@@ -15,12 +15,12 @@ foreach my $line(@lines){
   my @elements = split(/\t/,$line);
 
   if($elements[5]=~s/\+/-/){
-    $elements[2]=$elements[1];
-    $elements[1]--;
+    $elements[1]=$elements[1];
+    $elements[2]=$elements[1]+1;
   }
   elsif($elements[5]=~s/\-/+/){
-    $elements[1]=$elements[2];
-    $elements[2]++;
+    $elements[2]=$elements[2];
+    $elements[1]=$elements[2]-1;
   }
 
   my $out = join("\t", @elements);
@@ -29,4 +29,4 @@ foreach my $line(@lines){
 
 
 
-} 
+}
