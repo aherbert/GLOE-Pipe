@@ -1,4 +1,4 @@
-#This Perl code identifies the first base before the 5' of each read
+#This Perl code identifies the first base before the 5' of each read on the opposite strand (indirect mode)
 #!/usr/bin/perl
 use strict;
 use warnings;
