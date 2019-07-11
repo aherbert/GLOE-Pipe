@@ -6,10 +6,9 @@ Trimmomatic = {
 
 	output.dir   = TRIMREADS
 	def Trimmomatic_FLAG1 = "SE -phred33 " +
-                            Trimmomatic_THREADS
-                            
-    def Trimmomatic_FLAG2 = "ILLUMINACLIP:" + Trimmomatic_ADAPTER + ":2:30:10 SLIDINGWINDOW:4:15 MINLEN:36"
-    
+                            Trimmomatic_THREADS 
+	def Trimmomatic_FLAG2 = "ILLUMINACLIP:" + Trimmomatic_ADAPTER + ":2:30:10 SLIDINGWINDOW:4:15 MINLEN:36"
+	
 	transform(".fastq.gz") to ("_trimmed.fastq.gz") {
 		exec """
 			module load trimmomatic/${TRIMMOMATIC_VERSION} &&
