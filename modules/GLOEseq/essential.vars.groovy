@@ -1,4 +1,5 @@
 ESSENTIAL_PROJECT=".../project"   // full project directory path
+ESSENTIAL_TRIMMOMATIC=".../TruSeq3-SE.fa" // full path to the adapter fasta file
 ESSENTIAL_BOWTIE_REF=".../genome" // full path to reference index files Bowtie2
 ESSENTIAL_BOWTIE_GENOME=".../genome.fa" // full path to the reference genome FASTA file
 ESSENTIAL_BOWTIE_GENOME_INDEX="../saccer3.chrom.sizes" // chromosome sizes file of the reference genome
