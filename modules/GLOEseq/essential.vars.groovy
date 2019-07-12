@@ -11,7 +11,7 @@ ESSENTIAL_FRAGLEN=200 // mean length of library inserts and also minimum peak si
 ESSENTIAL_MACS2_GSIZE="1.20E+07" // mappable genome size for MACS2 
 ESSENTIAL_THREADS=8 // number of threads for parallel tasks
 ESSENTIAL_DUP="all" // relevant for MACS2, it instructs it to keep duplicate reads
-
+ESSENTIAL_BEDCOVERAGE="--smoothLength 1 --binSize 1 --normalizeUsing BPM"  // deepTools options for making normalised bigWig tracks
 
 ESSENTIAL_RE1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected BsrDI breaks in the yeast genome
 ESSENTIAL_RE2=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/Nb_BsrDI.bed" // Expected NbBsrDI breaks in the yeast genome
