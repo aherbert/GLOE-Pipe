@@ -17,8 +17,6 @@
 ############################################################################
 options(stringsAsFactors=FALSE)
 library(ChIPseeker)
-#library(clusterProfiler)
-#library(GenomicFeatures)
 library(openxlsx)
 library(Cairo)
 library(regioneR)
