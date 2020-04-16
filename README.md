@@ -20,20 +20,23 @@ GLOE-Pipe is designed to run in a high-performance cluster (HPC) environment wit
 ## Prerequisites
 
 ### Software
-- Trimmomatic
-- FastQC
-- Bowtie 2
-- SAMtools
-- bedtools
-- UCSC utilities
-- MACS2
-- deepTools
-- R
-  - ChIPseeker
-  - rtracklayer
-  - regioneR
-  - Cairo
-  - openxlsx
+
+| Software | Version used | Link |
+| --- | --- | --- |
+| `FastQC` | 0.11.5 | https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ |
+| `Trimmomatic` | 0.36 | http://www.usadellab.org/cms/?page=trimmomatic |
+| `Bowtie2` | 2.3.4 | http://bowtie-bio.sourceforge.net/bowtie2/index.shtml |
+| `Samtools` | 1.5 | http://samtools.sourceforge.net/ |
+| `BEDTools` | 2.25.0 | https://bedtools.readthedocs.io/en/latest/ |
+| `bedGraphToBigWig` | 365 | https://github.com/ENCODE-DCC/kentUtils |
+| `MACS2` | 2.1.1 | https://github.com/taoliu/MACS |
+| `deepTools` | 3.1.0 | https://deeptools.readthedocs.io/en/develop |
+| `R` | 3.5.1 | https://www.r-project.org/ |
+| `ChIPseeker` | 1.8.0 | https://bioconductor.org/packages/release/bioc/html/ChIPseeker.html |
+| `rtracklayer` | 1.42.2 | https://bioconductor.org/packages/release/bioc/html/rtracklayer.html |
+| `regioneR` | 1.14.0 | https://bioconductor.org/packages/release/bioc/html/regioneR.html |
+| `Cairo` | 1.15-10 | https://cran.r-project.org/web/packages/Cairo/index.html |
+| `openxlsx` | 4.1.0 | https://cran.r-project.org/web/packages/openxlsx/index.html |
 
 ### Files
 - `targets.txt`, which includes sample names

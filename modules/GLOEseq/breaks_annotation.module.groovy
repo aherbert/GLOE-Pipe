@@ -19,6 +19,11 @@ breaks_annotation = {
 
     produce("Breaks_Annotation.RData") {
         exec """
+
+                     if [ -e ${TMP} ]; then
+                           rm -r ${TMP};
+                     fi &&
+
             module load R/${R_VERSION} &&
 
             Rscript ${TOOL_BREAKS_ANNOTATION}/Breaks_Annotation.R $breaks_annotation_FLAGS;

@@ -3,13 +3,12 @@ ESSENTIAL_TRIMMOMATIC=".../TruSeq3-SE.fa" // full path to the adapter fasta file
 ESSENTIAL_BOWTIE_REF=".../genome" // full path to the reference index files for Bowtie2
 ESSENTIAL_BOWTIE_GENOME=".../genome.fa" // full path to the reference genome FASTA file
 ESSENTIAL_BOWTIE_GENOME_INDEX="../saccer3.chrom.sizes" // chromosome sizes file of the reference genome
-ESSENTIAL_SAMPLE_PREFIX=""  // sample prefix to be trimmed in the results and reports
 ESSENTIAL_BSGENOME="BSgenome.Scerevisiae.UCSC.sacCer3" // Bioconductor genome reference used by some modules
 ESSENTIAL_TXDB="TxDb.Scerevisiae.UCSC.sacCer3.sgdGene" // needed for breaks annotation
 ESSENTIAL_ANNODB="org.Sc.sgd.db"                    // needed for breaks annotation
 ESSENTIAL_FRAGLEN=200 // mean length of library inserts and also minimum peak size called by MACS2
 ESSENTIAL_MACS2_GSIZE="1.20E+07" // mappable genome size for MACS2 
-ESSENTIAL_THREADS=8 // number of threads for parallel tasks
+ESSENTIAL_THREADS=4 // number of threads for parallel tasks
 ESSENTIAL_DUP="all" // relevant for MACS2, it instructs it to keep duplicate reads
 ESSENTIAL_BEDCOVERAGE="--smoothLength 1 --binSize 1 --normalizeUsing BPM"  // deepTools options for making normalised bigWig tracks
 
