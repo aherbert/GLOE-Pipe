@@ -12,7 +12,7 @@ bam2bedI = {
 	transform(".bam") to (".bed") {
 		exec """
 
-            module load kentUtils/${KENTUTILS_VERSION} &&
+			module load kentUtils/${KENTUTILS_VERSION} &&
 			module load samtools/${SAMTOOLS_VERSION} &&
 			module load bedtools/${BEDTOOLS_VERSION} &&
 
@@ -22,8 +22,7 @@ bam2bedI = {
 			grep "+" $output.bed > ${output.prefix}.for.bed &&
 			grep "-" $output.bed > ${output.prefix}.rev.bed &&
 
-
-            rm ${output.prefix}.reads.bed &&
+			rm ${output.prefix}.reads.bed &&
 			rm ${output.prefix}.sites.bed
 
 		""","bam2bedI"
