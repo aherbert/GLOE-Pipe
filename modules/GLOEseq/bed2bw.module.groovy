@@ -32,12 +32,12 @@ bed2bw = {
 			bedGraphToBigWig ${output.prefix}.rev.bedgraph ${CHRSIZES} ${output.prefix}.rev.bw &&
 
 
-            rm ${output.prefix}.bedgraph &&
+			rm ${output.prefix}.bedgraph &&
 			rm ${output.prefix}.fwd.bedgraph &&
 			rm ${output.prefix}.rev.bedgraph &&
 			mv ${output.prefix}.fwd.bw ${SS}/ &&
 			mv ${output.prefix}.rev.bw ${SS}/ &&
-            rm ${CHRSIZES} 
+			rm ${CHRSIZES}
 
 		""","bed2bw"
 	}
