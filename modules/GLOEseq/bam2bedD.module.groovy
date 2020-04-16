@@ -22,7 +22,7 @@ bam2bedD = {
 			grep "+" $output.bed > ${output.prefix}.for.bed &&
 			grep "-" $output.bed > ${output.prefix}.rev.bed &&
 			
-            rm ${output.prefix}.reads.bed &&
+			rm ${output.prefix}.reads.bed &&
 			rm ${output.prefix}.sites.bed
 
 
