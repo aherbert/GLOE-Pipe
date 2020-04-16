@@ -9,10 +9,10 @@ bed2bw = {
 	
 	transform(".bed") to (".bw") {
 		exec """
-                     if [ ! -d ${SS} ]; then
-                             mkdir -p ${SS};
-                     fi &&
-
+			         if [ ! -d ${SS} ]; then
+				             mkdir -p ${SS};
+			         fi &&
+			         
 			         if [ ! -d ${TMP} ]; then
 				             mkdir -p ${TMP};
 			         fi &&
@@ -32,11 +32,11 @@ bed2bw = {
 			bedGraphToBigWig ${output.prefix}.rev.bedgraph ${CHRSIZES} ${output.prefix}.rev.bw &&
 
 
-		    rm ${output.prefix}.bedgraph &&
+            rm ${output.prefix}.bedgraph &&
 			rm ${output.prefix}.fwd.bedgraph &&
 			rm ${output.prefix}.rev.bedgraph &&
 			mv ${output.prefix}.fwd.bw ${SS}/ &&
-			mv ${output.prefix}.rev.bw ${SS}/
+			mv ${output.prefix}.rev.bw ${SS}/ &&
             rm ${CHRSIZES} 
 
 		""","bed2bw"
