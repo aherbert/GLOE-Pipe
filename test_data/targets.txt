@@ -1,4 +1,4 @@
-IP	IPname	INPUT	INPUTname	group
+Treatment	Tname	Control	Cname	CompName
 BsrDI_rep1_trimmed.bed	BsrDI_rep1	Undigested_trimmed.bed	Undigested	BsrDI_rep1_vs_Undigested
 BsrDI_rep2_trimmed.bed	BsrDI_rep2	Undigested_trimmed.bed	Undigested	BsrDI_rep2_vs_Undigested
 NbBsrDI_rep1_trimmed.bed	NbBsrDI_rep1	Undigested_trimmed.bed	Undigested	NbBsrDI_rep1_vs_Undigested
