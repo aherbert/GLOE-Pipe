@@ -1,7 +1,6 @@
 ESSENTIAL_PROJECT=".../project"   // full path to the project directory
 ESSENTIAL_TRIMMOMATIC=".../TruSeq3-SE.fa" // full path to the adapter fasta file
 ESSENTIAL_BOWTIE_REF=".../genome" // full path to the reference index files for Bowtie2
-ESSENTIAL_BOWTIE_GENOME=".../genome.fa" // full path to the reference genome FASTA file
 ESSENTIAL_BOWTIE_GENOME_INDEX="../saccer3.chrom.sizes" // chromosome sizes file of the reference genome
 ESSENTIAL_TXDB="TxDb.Scerevisiae.UCSC.sacCer3.sgdGene" // needed for breaks annotation
 ESSENTIAL_ANNODB="org.Sc.sgd.db" // needed for breaks annotation
