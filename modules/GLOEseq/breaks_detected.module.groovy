@@ -8,9 +8,9 @@ breaks_detected = {
 
     output.dir=breaks_detected_OUTDIR.replaceFirst("out=","")
     def breaks_detected_FLAGS = breaks_detected_FILES + " " +
-        breaks_detected_RE1 + " " + 
-        breaks_detected_RE2 + " " + 
-        breaks_detected_RE3 + " " +
+        breaks_detected_EB1 + " " + 
+        breaks_detected_EB2 + " " + 
+        breaks_detected_EB3 + " " +
         breaks_detected_OUTDIR + " " +
         breaks_detected_EXTRA
 
