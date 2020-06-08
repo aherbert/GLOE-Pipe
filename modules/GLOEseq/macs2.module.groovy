@@ -41,8 +41,8 @@ macs2 = {
                 
                 if [ "\$BED" != "\$INPUT" ]; then
                     echo "\${Tname} vs \${Cname}" >> $output &&
-                    macs2 callpeak -t $MACS2_TREATMENT/\$TREATMENTFOR -c $MACS2_CONTROL/\$CONTROLFOR -n \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2 $MACS2_FLAGS &&
-                    macs2 callpeak -t $MACS2_TREATMENT/\$TREATMENTREV -c $MACS2_CONTROL/\$CONTROLREV -n \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2 $MACS2_FLAGS &&
+                    macs2 callpeak -t $MACS2_INPUT/\$TREATMENTFOR -c $MACS2_INPUT/\$CONTROLFOR -n \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2 $MACS2_FLAGS &&
+                    macs2 callpeak -t $MACS2_INPUT/\$TREATMENTREV -c $MACS2_INPUT/\$CONTROLREV -n \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2 $MACS2_FLAGS &&
                     if [ \$? -ne 0 ]; then rm $output; fi &&
                     awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "+"}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_summits.bed > \${CompName}_macs2.bed &&
                     awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "-"}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_summits.bed >> \${CompName}_macs2.bed &&
