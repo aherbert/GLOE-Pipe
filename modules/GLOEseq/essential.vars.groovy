@@ -11,9 +11,9 @@ ESSENTIAL_THREADS=4 // number of threads for parallel tasks
 ESSENTIAL_DUP="all" // relevant for MACS2, it instructs it to keep duplicate reads
 ESSENTIAL_BEDCOVERAGE="--smoothLength 1 --binSize 1 --normalizeUsing BPM"  // deepTools options for making normalised bigWig tracks
 
-ESSENTIAL_RE1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected BsrDI breaks in the yeast genome
-ESSENTIAL_RE2=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/Nb_BsrDI.bed" // Expected NbBsrDI breaks in the yeast genome
-ESSENTIAL_RE3=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI.bed" // Expected NotI breaks in the yeast genome
+ESSENTIAL_EB1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected BsrDI breaks in the yeast genome
+ESSENTIAL_EB2=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/Nb_BsrDI.bed" // Expected NbBsrDI breaks in the yeast genome
+ESSENTIAL_EB3=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI.bed" // Expected NotI breaks in the yeast genome
 
 
 //global vars that will be reused in some global vars
