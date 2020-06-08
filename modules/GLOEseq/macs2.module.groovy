@@ -25,34 +25,34 @@ macs2 = {
             
             BED=\$(basename $input) &&
             grep \$BED $MACS2_TARGETS | while read -r TARGET; do
-                IP=\$(       echo \$TARGET | cut -f1 -d" ") &&
-                IPname=\$(   echo \$TARGET | cut -f2 -d" ") &&
-                INPUT=\$(    echo \$TARGET | cut -f3 -d" ") &&
-                INPUTname=\$(echo \$TARGET | cut -f4 -d" ") &&
-                IPFOR=\${IP%%.bed}".for.bed" && 
-                IPREV=\${IP%%.bed}".rev.bed" && 
-                IPnameFOR=\${IPname}"_for" && 
-                IPnameREV=\${IPname}"_rev" && 
-                INPUTFOR=\${INPUT%%.bed}".for.bed" && 
-                INPUTREV=\${INPUT%%.bed}".rev.bed" && 
-                INPUTnameFOR=\${INPUTname}"_for" && 
-                INPUTnameREV=\${INPUTname}"_rev";   
+                TREATMENT=\$(       echo \$TARGET | cut -f1 -d" ") &&
+                Tname=\$(   echo \$TARGET | cut -f2 -d" ") &&
+                CONTROL=\$(    echo \$TARGET | cut -f3 -d" ") &&
+                Cname=\$(echo \$TARGET | cut -f4 -d" ") &&
+                TREATMENTFOR=\${TREATMENT%%.bed}".for.bed" && 
+                TREATMENTREV=\${TREATMENT%%.bed}".rev.bed" && 
+                TREATMENTnameFOR=\${Tname}"_for" && 
+                TREATMENTnameREV=\${Tname}"_rev" && 
+                CONTROLFOR=\${CONTROL%%.bed}".for.bed" && 
+                CONTROLREV=\${CONTROL%%.bed}".rev.bed" && 
+                CONTROLnameFOR=\${Cname}"_for" && 
+                CONTROLnameREV=\${Cname}"_rev";   
                 
                 if [ "\$BED" != "\$INPUT" ]; then
-                    echo "\${IPname} vs \${INPUTname}" >> $output &&
-                    macs2 callpeak -t $MACS2_INPUT/\$IPFOR -c $MACS2_INPUT/\$INPUTFOR -n \${IPnameFOR}.vs.\${INPUTnameFOR}_macs2 $MACS2_FLAGS &&
-                    macs2 callpeak -t $MACS2_INPUT/\$IPREV -c $MACS2_INPUT/\$INPUTREV -n \${IPnameREV}.vs.\${INPUTnameREV}_macs2 $MACS2_FLAGS &&
+                    echo "\${Tname} vs \${Cname}" >> $output &&
+                    macs2 callpeak -t $MACS2_TREATMENT/\$TREATMENTFOR -c $MACS2_CONTROL/\$CONTROLFOR -n \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2 $MACS2_FLAGS &&
+                    macs2 callpeak -t $MACS2_TREATMENT/\$TREATMENTREV -c $MACS2_CONTROL/\$CONTROLREV -n \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2 $MACS2_FLAGS &&
                     if [ \$? -ne 0 ]; then rm $output; fi &&
-                    awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "+"}' \${IPnameFOR}.vs.\${INPUTnameFOR}_macs2_summits.bed > \${IPname}.vs.\${INPUTname}_macs2.bed &&
-                    awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "-"}' \${IPnameREV}.vs.\${INPUTnameREV}_macs2_summits.bed >> \${IPname}.vs.\${INPUTname}_macs2.bed &&
-                    bedtools sort -i \${IPname}.vs.\${INPUTname}_macs2.bed > \${IPname}.vs.\${INPUTname}_macs2_summits.bed &&
-                    awk '{if(NR>20)print}' \${IPnameFOR}.vs.\${INPUTnameFOR}_macs2_peaks.xls > \${IPname}.vs.\${INPUTname}_macs2_peaks.xls &&
-                    awk '{if(NR>21)print}' \${IPnameREV}.vs.\${INPUTnameREV}_macs2_peaks.xls >> \${IPname}.vs.\${INPUTname}_macs2_peaks.xls &&
-                    cat \${IPnameFOR}.vs.\${INPUTnameFOR}_macs2_peaks.narrowPeak \${IPnameREV}.vs.\${INPUTnameREV}_macs2_peaks.narrowPeak > \${IPname}.vs.\${INPUTname}_macs2_peaks.narrowPeak && 
-                    rm \${IPnameFOR}.vs.\${INPUTnameFOR}_macs2* &&
-                    rm \${IPnameREV}.vs.\${INPUTnameREV}_macs2* &&
-                    rm \${IPname}.vs.\${INPUTname}_macs2.bed    &&
-                    mv \${IPname}.vs.\${INPUTname}_macs2* $output.dir ;
+                    awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "+"}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_summits.bed > \${Tname}.vs.\${Cname}_macs2.bed &&
+                    awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "-"}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_summits.bed >> \${Tname}.vs.\${Cname}_macs2.bed &&
+                    bedtools sort -i \${Tname}.vs.\${Cname}_macs2.bed > \${Tname}.vs.\${Cname}_macs2_summits.bed &&
+                    awk '{if(NR>20)print}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_peaks.xls > \${Tname}.vs.\${Cname}_macs2_peaks.xls &&
+                    awk '{if(NR>21)print}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_peaks.xls >> \${Tname}.vs.\${Cname}_macs2_peaks.xls &&
+                    cat \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_peaks.narrowPeak \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_peaks.narrowPeak > \${Tname}.vs.\${Cname}_macs2_peaks.narrowPeak && 
+                    rm \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2* &&
+                    rm \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2* &&
+                    rm \${Tname}.vs.\${Cname}_macs2.bed    &&
+                    mv \${Tname}.vs.\${Cname}_macs2* $output.dir ;
                 fi;
             done
         ""","macs2"
