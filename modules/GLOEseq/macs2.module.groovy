@@ -29,6 +29,7 @@ macs2 = {
                 Tname=\$(   echo \$TARGET | cut -f2 -d" ") &&
                 CONTROL=\$(    echo \$TARGET | cut -f3 -d" ") &&
                 Cname=\$(echo \$TARGET | cut -f4 -d" ") &&
+                CompName=\$(echo \$TARGET | cut -f5 -d" ") &&
                 TREATMENTFOR=\${TREATMENT%%.bed}".for.bed" && 
                 TREATMENTREV=\${TREATMENT%%.bed}".rev.bed" && 
                 TREATMENTnameFOR=\${Tname}"_for" && 
@@ -43,16 +44,16 @@ macs2 = {
                     macs2 callpeak -t $MACS2_TREATMENT/\$TREATMENTFOR -c $MACS2_CONTROL/\$CONTROLFOR -n \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2 $MACS2_FLAGS &&
                     macs2 callpeak -t $MACS2_TREATMENT/\$TREATMENTREV -c $MACS2_CONTROL/\$CONTROLREV -n \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2 $MACS2_FLAGS &&
                     if [ \$? -ne 0 ]; then rm $output; fi &&
-                    awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "+"}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_summits.bed > \${Tname}.vs.\${Cname}_macs2.bed &&
-                    awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "-"}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_summits.bed >> \${Tname}.vs.\${Cname}_macs2.bed &&
-                    bedtools sort -i \${Tname}.vs.\${Cname}_macs2.bed > \${Tname}.vs.\${Cname}_macs2_summits.bed &&
-                    awk '{if(NR>20)print}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_peaks.xls > \${Tname}.vs.\${Cname}_macs2_peaks.xls &&
-                    awk '{if(NR>21)print}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_peaks.xls >> \${Tname}.vs.\${Cname}_macs2_peaks.xls &&
-                    cat \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_peaks.narrowPeak \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_peaks.narrowPeak > \${Tname}.vs.\${Cname}_macs2_peaks.narrowPeak && 
+                    awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "+"}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_summits.bed > \${CompName}_macs2.bed &&
+                    awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "-"}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_summits.bed >> \${CompName}_macs2.bed &&
+                    bedtools sort -i \${CompName}_macs2.bed > \${CompName}_macs2_summits.bed &&
+                    awk '{if(NR>20)print}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_peaks.xls > \${CompName}_macs2_peaks.xls &&
+                    awk '{if(NR>21)print}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_peaks.xls >> \${CompName}_macs2_peaks.xls &&
+                    cat \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_peaks.narrowPeak \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_peaks.narrowPeak > \${CompName}_macs2_peaks.narrowPeak && 
                     rm \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2* &&
                     rm \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2* &&
-                    rm \${Tname}.vs.\${Cname}_macs2.bed    &&
-                    mv \${Tname}.vs.\${Cname}_macs2* $output.dir ;
+                    rm \${CompName}_macs2.bed    &&
+                    mv \${CompName}_macs2* $output.dir ;
                 fi;
             done
         ""","macs2"
