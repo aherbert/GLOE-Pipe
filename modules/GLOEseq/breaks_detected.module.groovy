@@ -14,7 +14,7 @@ breaks_detected = {
         breaks_detected_OUTDIR + " " +
         breaks_detected_EXTRA
 
-    produce("Breaks_detected_EB1.RData") {
+    produce("Breaks_detected_eb1.RData") {
         exec """
            module load bedtools/${BEDTOOLS_VERSION} &&
            module load R/${R_VERSION} &&
