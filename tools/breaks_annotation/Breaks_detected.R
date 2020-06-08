@@ -54,7 +54,7 @@ breaks.number <- sapply(breaks, function(x) { mm <-length(x) })
 
 true.breaklst.eb1.number <- sapply(true.breaklst.eb1, function(x) { mm <-length(x) })
 true.breaklst.eb1.percentage <- (100/breaks.number)*true.breaklst.eb1.number
-eb1.percentage <- (100/length(breaks.re1))*true.breaklst.eb1.number
+eb1.percentage <- (100/length(breaks.eb1))*true.breaklst.eb1.number
 
 summary.table.eb1 <- cbind(filename,breaks.number,true.breaklst.eb1.number,true.breaklst.eb1.percentage,
                            length(breaks.eb1),true.breaklst.eb1.number,eb1.percentage)
