@@ -28,119 +28,119 @@ parseArgs <- function(args,string,default=NULL,convert="as.character") {
 args <- commandArgs(T)
 breakData <- parseArgs(args,"breakData=") # .xls result from MACS2
 
-re1 <- parseArgs(args, "RestrictionEnzyme1=")
-re2 <- parseArgs(args, "RestrictionEnzyme2=")
-re3 <- parseArgs(args, "RestrictionEnzyme3=")
+eb1 <- parseArgs(args, "ExpectedBreaks1=")
+eb2 <- parseArgs(args, "ExpectedBreaks2=")
+eb3 <- parseArgs(args, "ExpectedBreaks3=")
 
 out <- parseArgs(args,"out=", "macs2")
 
-runstr <- paste0("Call with: Rscript Breaks_detected.R [breakData=",breakData,"] [RestrictionEnzyme1=",re1,"] [RestrictionEnzyme2=",re2,"] [RestrictionEnzyme3=",re3,"] [out=",out,"]")
+runstr <- paste0("Call with: Rscript Breaks_detected.R [breakData=",breakData,"] [ExpectedBreaks1=",eb1,"] [ExpectedBreaks1=",eb2,"] [ExpectedBreaks1=",eb3,"] [out=",out,"]")
 cat(runstr)
 
 breakFiles <-list.files(breakData,pattern=".bed", full.names = TRUE) # list of the full path of the .xls file 
 breaks <- lapply(breakFiles, readPeakFile) # read all the xls files using 'readPeakFile' function
-breaks.re1 <- import(re1)
+breaks.eb1 <- import(eb1)
 
 # check breaks overlapping with those expected
-true.breaklst.re1 <- lapply(breaks, function(x) {
-	m <- x[x %over% breaks.re1]
+true.breaklst.eb1 <- lapply(breaks, function(x) {
+	m <- x[x %over% breaks.eb1]
 })
 
 # create a summary table
 filename <- strsplit(basename(breakFiles), "_macs2_summits.bed") # take the filenames 
-filename.re1 <- strsplit(basename(re1), ".bed")
+filename.eb1 <- strsplit(basename(eb1), ".bed")
 
 breaks.number <- sapply(breaks, function(x) { mm <-length(x) })
 
-true.breaklst.re1.number <- sapply(true.breaklst.re1, function(x) { mm <-length(x) })
-true.breaklst.re1.percentage <- (100/breaks.number)*true.breaklst.re1.number
-re1.percentage <- (100/length(breaks.re1))*true.breaklst.re1.number
+true.breaklst.eb1.number <- sapply(true.breaklst.eb1, function(x) { mm <-length(x) })
+true.breaklst.eb1.percentage <- (100/breaks.number)*true.breaklst.eb1.number
+eb1.percentage <- (100/length(breaks.re1))*true.breaklst.eb1.number
 
-summary.table.re1 <- cbind(filename,breaks.number,true.breaklst.re1.number,true.breaklst.re1.percentage,
-                           length(breaks.re1),true.breaklst.re1.number,re1.percentage)
-colnames(summary.table.re1) <- c("Samples", "Breaks detected", paste(filename.re1,"Breaks detected", sep=" "),
-                                 "Breaks detected (%)", paste(filename.re1,"Breaks", sep=" "), 
-                                 paste(filename.re1,"Breaks detected", sep=" "),
-                                 paste(filename.re1,"Breaks","(%)", sep=" ") )
+summary.table.eb1 <- cbind(filename,breaks.number,true.breaklst.eb1.number,true.breaklst.eb1.percentage,
+                           length(breaks.eb1),true.breaklst.eb1.number,eb1.percentage)
+colnames(summary.table.eb1) <- c("Samples", "Breaks detected", paste(filename.eb1,"Breaks detected", sep=" "),
+                                 "Breaks detected (%)", paste(filename.eb1,"Breaks", sep=" "), 
+                                 paste(filename.eb1,"Breaks detected", sep=" "),
+                                 paste(filename.eb1,"Breaks","(%)", sep=" ") )
 
-names(true.breaklst.re1) <- paste0(filename, "_", filename.re1)
+names(true.breaklst.eb1) <- paste0(filename, "_", filename.eb1)
 
-outputData.re1 <- lapply(true.breaklst.re1, as.data.frame)
-sapply(names(outputData.re1), 
- function (x) write.table(outputData.re1[[x]], file=paste0(out, "/", x, ".xls"), row.names=F, sep="\t"))
+outputData.eb1 <- lapply(true.breaklst.eb1, as.data.frame)
+sapply(names(outputData.eb1), 
+ function (x) write.table(outputData.eb1[[x]], file=paste0(out, "/", x, ".xls"), row.names=F, sep="\t"))
 
-write.csv(summary.table.re1, file=paste0(out, "/", "RE1_breaks_detected_table.csv"), row.names=F)
+write.csv(summary.table.eb1, file=paste0(out, "/", "EB1_breaks_detected_table.csv"), row.names=F)
 
 
-if(file.exists(re2)) {
+if(file.exists(eb2)) {
 
-	breaks.re2 <- import(re2)
+	breaks.eb2 <- import(eb2)
 
 	# check breaks overlapping with those expected
-	true.breaklst.re2 <- lapply(breaks, function(x) {
-		m <- x[x %over% breaks.re2]
+	true.breaklst.eb2 <- lapply(breaks, function(x) {
+		m <- x[x %over% breaks.eb2]
 	})
 
-	filename.re2 <- strsplit(basename(re2), ".bed")
+	filename.eb2 <- strsplit(basename(eb2), ".bed")
 
-	true.breaklst.re2.number <- sapply(true.breaklst.re2, function(x) { mm <-length(x) })
-	true.breaklst.re2.percentage <- (100/breaks.number)*true.breaklst.re2.number
-        re2.percentage <- (100/length(breaks.re2))*true.breaklst.re2.number
+	true.breaklst.eb2.number <- sapply(true.breaklst.eb2, function(x) { mm <-length(x) })
+	true.breaklst.eb2.percentage <- (100/breaks.number)*true.breaklst.eb2.number
+        eb2.percentage <- (100/length(breaks.eb2))*true.breaklst.eb2.number
 
-	summary.table.re2 <- cbind(filename,breaks.number,true.breaklst.re2.number,true.breaklst.re2.percentage,
-                                   length(breaks.re2),true.breaklst.re2.number,re2.percentage)
-        colnames(summary.table.re2) <- c("Samples", "Breaks detected", paste(filename.re2,"Breaks detected", sep=" "),
-                                         "Breaks detected (%)", paste(filename.re2,"Breaks", sep=" "), 
-                                         paste(filename.re2,"Breaks detected", sep=" "), 
-                                         paste(filename.re2,"Breaks","(%)", sep=" ") )
+	summary.table.eb2 <- cbind(filename,breaks.number,true.breaklst.eb2.number,true.breaklst.eb2.percentage,
+                                   length(breaks.eb2),true.breaklst.eb2.number,eb2.percentage)
+        colnames(summary.table.eb2) <- c("Samples", "Breaks detected", paste(filename.eb2,"Breaks detected", sep=" "),
+                                         "Breaks detected (%)", paste(filename.eb2,"Breaks", sep=" "), 
+                                         paste(filename.eb2,"Breaks detected", sep=" "), 
+                                         paste(filename.eb2,"Breaks","(%)", sep=" ") )
   
-	names(true.breaklst.re2) <- paste0(filename, "_", filename.re2)
+	names(true.breaklst.eb2) <- paste0(filename, "_", filename.eb2)
 	
-	outputData.re2 <- lapply(true.breaklst.re2, as.data.frame)
-	sapply(names(outputData.re2), 
-	 function (x) write.table(outputData.re2[[x]], file=paste0(out, "/", x, ".xls"), row.names=F, sep="\t"))
+	outputData.eb2 <- lapply(true.breaklst.eb2, as.data.frame)
+	sapply(names(outputData.eb2), 
+	 function (x) write.table(outputData.eb2[[x]], file=paste0(out, "/", x, ".xls"), row.names=F, sep="\t"))
 
-	write.csv(summary.table.re2, file=paste0(out, "/", "RE2_breaks_detected_table.csv"), row.names=F)
+	write.csv(summary.table.eb2, file=paste0(out, "/", "EB2_breaks_detected_table.csv"), row.names=F)
 
-        save(re2,outputData.re2, file=paste0(out,"/Breaks_detected_re2.RData"))
+        save(eb2,outputData.eb2, file=paste0(out,"/Breaks_detected_eb2.RData"))
 }
 
 
-if(file.exists(re3)) {
+if(file.exists(eb3)) {
 
-        breaks.re3 <- import(re3)
+        breaks.eb3 <- import(eb3)
 
         # check breaks overlapping with those expected
-        true.breaklst.re3 <- lapply(breaks, function(x) {
-                m <- x[x %over% breaks.re3]
+        true.breaklst.eb3 <- lapply(breaks, function(x) {
+                m <- x[x %over% breaks.eb3]
         })
 
-        filename.re3 <- strsplit(basename(re3), ".bed")
+        filename.eb3 <- strsplit(basename(eb3), ".bed")
 
-        true.breaklst.re3.number <- sapply(true.breaklst.re3, function(x) { mm <-length(x) })
-        true.breaklst.re3.percentage <- (100/breaks.number)*true.breaklst.re3.number
-        re3.percentage <- (100/length(breaks.re3))*true.breaklst.re3.number
+        true.breaklst.eb3.number <- sapply(true.breaklst.eb3, function(x) { mm <-length(x) })
+        true.breaklst.eb3.percentage <- (100/breaks.number)*true.breaklst.eb3.number
+        eb3.percentage <- (100/length(breaks.eb3))*true.breaklst.eb3.number
 
-        summary.table.re3 <- cbind(filename,breaks.number,true.breaklst.re3.number,true.breaklst.re3.percentage,
-                                   length(breaks.re3),true.breaklst.re3.number,re3.percentage)
-        colnames(summary.table.re3) <- c("Samples", "Breaks detected", paste(filename.re3,"Breaks detected", sep=" "),
-                                         "Breaks detected (%)", paste(filename.re3,"Breaks", sep=" "),
-                                         paste(filename.re3,"Breaks detected", sep=" "),
-                                         paste(filename.re3,"Breaks","(%)", sep=" ") )
+        summary.table.eb3 <- cbind(filename,breaks.number,true.breaklst.eb3.number,true.breaklst.eb3.percentage,
+                                   length(breaks.eb3),true.breaklst.eb3.number,eb3.percentage)
+        colnames(summary.table.eb3) <- c("Samples", "Breaks detected", paste(filename.eb3,"Breaks detected", sep=" "),
+                                         "Breaks detected (%)", paste(filename.eb3,"Breaks", sep=" "),
+                                         paste(filename.eb3,"Breaks detected", sep=" "),
+                                         paste(filename.eb3,"Breaks","(%)", sep=" ") )
 
-        names(true.breaklst.re3) <- paste0(filename, "_", filename.re3)
+        names(true.breaklst.eb3) <- paste0(filename, "_", filename.eb3)
 
-        outputData.re3 <- lapply(true.breaklst.re3, as.data.frame)
-        sapply(names(outputData.re3),
-         function (x) write.table(outputData.re3[[x]], file=paste0(out, "/", x, ".xls"), row.names=F, sep="\t"))
+        outputData.eb3 <- lapply(true.breaklst.eb3, as.data.frame)
+        sapply(names(outputData.eb3),
+         function (x) write.table(outputData.eb3[[x]], file=paste0(out, "/", x, ".xls"), row.names=F, sep="\t"))
 
-        write.csv(summary.table.re3, file=paste0(out, "/", "RE3_breaks_detected_table.csv"), row.names=F)
+        write.csv(summary.table.eb3, file=paste0(out, "/", "EB3_breaks_detected_table.csv"), row.names=F)
          
-        save(re3,outputData.re3, file=paste0(out,"/Breaks_detected_re3.RData"))
+        save(eb3,outputData.eb3, file=paste0(out,"/Breaks_detected_eb3.RData"))
 }
 
 
 
 # save the sessionInformation
 writeLines(capture.output(sessionInfo()), paste(out, "/GLOEseq_Breaks_detected_session_info.txt", sep=""))
-save(breakFiles,breaks,re1,filename,outputData.re1, file=paste0(out,"/Breaks_detected_re1.RData"))
+save(breakFiles,breaks,eb1,filename,outputData.eb1, file=paste0(out,"/Breaks_detected_eb1.RData"))
