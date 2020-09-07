@@ -60,3 +60,11 @@ run {
 //	   [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  + 
 //	   [ breaks_annotation, breaks_detected ] + collectBpipeLogs 
 //}
+
+
+
+//MAIN PIPELINE TASK (DIRECT mode - optional) USED FOR THE SAMPLES WITH UMIs 
+//run {
+//           "%.R*.fastq.gz" * [ AddUmiToFastq ] + "%.fastq.gz" *
+//           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] + umidedup + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] ] ]  + collectBpipeLogs
+//}

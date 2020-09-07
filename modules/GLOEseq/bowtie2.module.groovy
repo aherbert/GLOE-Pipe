@@ -24,7 +24,7 @@ bowtie2 = {
             fi                                       &&  
             bowtie2 $BOWTIE_FLAGS -x $BOWTIE_REF $input | samtools view $SAMTOOLS_VIEW_FLAG1 - | samtools sort $SAMTOOLS_SORT_FLAGS -T $TMPDIR/\$(basename $output.prefix)_bowtie2_sorted - > ${output.prefix}_bowtie2_sorted.bam &&
             samtools view $SAMTOOLS_VIEW_FLAG2 ${output.prefix}_bowtie2_sorted.bam | samtools sort $BOWTIE_SAMTOOLS_THREADS -T $TMPDIR/\$(basename $output.prefix) -o $output &&
-            samtools index ${output.prefix}_bowtie2_sorted.bam
+            rm ${output.prefix}_bowtie2_sorted.bam
         ""","bowtie2"
     }
 }

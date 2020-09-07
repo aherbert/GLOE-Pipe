@@ -19,6 +19,7 @@ ESSENTIAL_EB3=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI.bed" // Expected Not
 //global vars that will be reused in some global vars
 PROJECT=ESSENTIAL_PROJECT
 LOGS=PROJECT + "/logs"
+UMIREADS=PROJECT + "/rawdata_umi"
 TRIMREADS=PROJECT + "/rawdata_trimmed"
 MAPPED=PROJECT + "/mapped"
 QC=PROJECT + "/qc"
