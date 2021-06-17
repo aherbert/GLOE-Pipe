@@ -82,7 +82,7 @@ Start running GLOE-Pipe (NB: **the indirect mode is the default**)
 ## References
 - Preparation and Analysis of GLOE-Seq Libraries for Genome-Wide Mapping of DNA Replication Patterns, Single-Strand Breaks, and Lesions.
 Petrosino G, Zilio N, Sriramachandran AM, Ulrich HD.
-STAR Protoc. 2020 Aug 5;1(2):100076. doi: 10.1016/j.xpro.2020.100076. eCollection 2020 Sep 18. PMID: 33111111 
+STAR Protoc. 2020 Aug 5;1(2):100076. doi: 10.1016/j.xpro.2020.100076. eCollection 2020 Sep 18. PMID: [https://pubmed.ncbi.nlm.nih.gov/33111111/ 33111111] 
 - Genome-wide Nucleotide-Resolution Mapping of DNA Replication Patterns, Single-Strand Breaks, and Lesions by GLOE-Seq.
 Sriramachandran AM, Petrosino G, Méndez-Lago M, Schäfer AJ, Batista-Nascimento LS, Zilio N, Ulrich HD.
-Mol Cell. 2020 Jun 4;78(5):975-985.e7. doi: 10.1016/j.molcel.2020.03.027. Epub 2020 Apr 21. PMID: 32320643
+Mol Cell. 2020 Jun 4;78(5):975-985.e7. doi: 10.1016/j.molcel.2020.03.027. Epub 2020 Apr 21. PMID: [https://pubmed.ncbi.nlm.nih.gov/32320643/ 32320643]
