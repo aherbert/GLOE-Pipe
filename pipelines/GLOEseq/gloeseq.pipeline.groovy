@@ -16,6 +16,9 @@ load MODULE_FOLDER + "GLOEseq/bowtie2.module.groovy"
 load MODULE_FOLDER + "GLOEseq/bamindexer.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bamindexer.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/bamqc.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/bamqc.module.groovy"
+
 load MODULE_FOLDER + "GLOEseq/bam2bedD.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bam2bedD.module.groovy"
 
@@ -43,14 +46,17 @@ load MODULE_FOLDER + "GLOEseq/breaks_detected.module.groovy"
 load MODULE_FOLDER + "GLOEseq/bed2bz2.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bed2bz2.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/multiqc.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/multiqc.module.groovy"
+
 load MODULE_FOLDER + "miscellaneous/collectbpipes.module.2.groovy"
 
 
 //MAIN PIPELINE TASK (INDIRECT mode - default)
 run {
             "%.fastq.gz" *
-           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedI + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  +
-           [ breaks_annotation, breaks_detected ] + collectBpipeLogs
+           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + BamQC + bam2bedI + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  +
+           [ breaks_annotation, breaks_detected ] + collectBpipeLogs + MultiQC
 }
 
 
@@ -58,7 +64,7 @@ run {
 //run {
 //	    "%.fastq.gz" * 
 //	   [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  + 
-//	   [ breaks_annotation, breaks_detected ] + collectBpipeLogs 
+//	   [ breaks_annotation, breaks_detected ] + collectBpipeLogs + MultiQC
 //}
 
 
@@ -66,5 +72,5 @@ run {
 //MAIN PIPELINE TASK (DIRECT mode - optional) USED FOR THE SAMPLES WITH UMIs 
 //run {
 //           "%.R*.fastq.gz" * [ AddUmiToFastq ] + "%.fastq.gz" *
-//           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] + umidedup + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] ] ]  + collectBpipeLogs
+//           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] + umidedup + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] ] ] + collectBpipeLogs + MultiQC
 //}
