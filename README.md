@@ -29,8 +29,10 @@ GLOE-Pipe is designed to run in a high-performance cluster (HPC) environment wit
 | `Samtools` | 1.5 | http://samtools.sourceforge.net/ |
 | `BEDTools` | 2.25.0 | https://bedtools.readthedocs.io/en/latest/ |
 | `bedGraphToBigWig` | 365 | https://github.com/ENCODE-DCC/kentUtils |
+| `BamQC` | 0.1.25_devel | https://github.com/s-andrews/BamQC |
 | `MACS2` | 2.1.1 | https://github.com/taoliu/MACS |
 | `deepTools` | 3.1.0 | https://deeptools.readthedocs.io/en/develop |
+| `MultiQC` | 1.9 | https://github.com/ewels/MultiQC |
 | `R` | 3.5.1 | https://www.r-project.org/ |
 | `ChIPseeker` | 1.8.0 | https://bioconductor.org/packages/release/bioc/html/ChIPseeker.html |
 | `rtracklayer` | 1.42.2 | https://bioconductor.org/packages/release/bioc/html/rtracklayer.html |
@@ -68,7 +70,7 @@ Copy the input FastQ files into `<project_dir>/rawdata folder`.
 Using GNU `screen` (for persistence), load the bpipe module customised for the Slurm job manager
 
     screen
-    module load bpipe/0.9.9.3.slurm
+    module load bpipe/0.9.9.5.slurm
 
 Start running GLOE-Pipe (NB: **the indirect mode is the default**)
 
