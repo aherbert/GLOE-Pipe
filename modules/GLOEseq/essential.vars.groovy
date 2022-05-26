@@ -12,7 +12,7 @@ ESSENTIAL_DUP="all" // relevant for MACS2, it instructs it to keep duplicate rea
 
 ESSENTIAL_BEDCOVERAGE="--smoothLength 1 --binSize 1 --normalizeUsing BPM"  // deepTools options for making normalised bigWig tracks
                                                                            // If you want to exclude chromsomes for normalisation e.g. chrM add 
-																		   // the following parameter --ignoreForNormalization chrM
+                                                                           // the following parameter --ignoreForNormalization chrM
 
 
 ESSENTIAL_EB1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected BsrDI breaks in the yeast genome
