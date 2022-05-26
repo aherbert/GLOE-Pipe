@@ -9,7 +9,6 @@ ESSENTIAL_FRAGLEN=200 // mean length of library inserts and also minimum peak si
 ESSENTIAL_MACS2_GSIZE="1.20E+07" // mappable genome size for MACS2 
 ESSENTIAL_THREADS=4 // number of threads for parallel tasks
 ESSENTIAL_DUP="all" // relevant for MACS2, it instructs it to keep duplicate reads
-
 ESSENTIAL_BEDCOVERAGE="--smoothLength 1 --binSize 1 --normalizeUsing BPM"  // deepTools options for making normalised bigWig tracks
                                                                            // If you want to exclude chromsomes for normalisation e.g. chrM add 
                                                                            // the following parameter --ignoreForNormalization chrM
