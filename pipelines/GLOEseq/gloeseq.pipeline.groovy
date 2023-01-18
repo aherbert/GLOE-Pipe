@@ -7,6 +7,12 @@ load MODULE_FOLDER + "GLOEseq/tool.versions.groovy"
 load MODULE_FOLDER + "GLOEseq/trimmomatic.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/trimmomatic.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/cutadapt.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/cutadapt.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/cutadapt_pe.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/cutadapt_pe.module.groovy"
+
 load MODULE_FOLDER + "GLOEseq/fastqc.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/fastqc.module.groovy"
 
@@ -52,12 +58,40 @@ load MODULE_FOLDER + "GLOEseq/multiqc.module.groovy"
 load MODULE_FOLDER + "miscellaneous/collectbpipes.module.2.groovy"
 
 
-//MAIN PIPELINE TASK (INDIRECT mode - default)
+//MAIN PIPELINE TASK - SINGLE END READS with Trimmomatic (INDIRECT mode - default)
 run {
             "%.fastq.gz" *
            [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + BamQC + bam2bedI + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  +
            [ breaks_annotation, breaks_detected ] + collectBpipeLogs + MultiQC
 }
+
+//MAIN PIPELINE TASK - SINGLE END READS with Cutadapt (INDIRECT mode - default) 
+//run {
+//
+//	"%.fastq.gz" * [ 
+//              FastQC.using(subdir="raw") , 
+//              Cutadapt + 
+//              [ 
+//                  FastQC.using(subdir:"trimmed"), 
+//                  bowtie2 + BAMindexer + BamQC + bam2bedI + [ 
+//                                                              bedcoverage, 
+//                                                              bed2bw + rfd,
+//                                                            ] 
+//              ] ] + collectBpipeLogs + MultiQC
+//    }
+
+
+//MAIN PIPELINE TASK - PAIRED END READS With Cutadapt (INDIRECT mode - default) 
+//run {
+// 
+//         "%.fastq.gz" * [
+//              FastQC.using(subdir="raw")
+//                         ] +
+//          "%.R*.fastq.gz" * [
+//               Cutadapt_pe + 
+//               [ FastQC.using(subdir:"trimmed"), bowtie2_pe + BAMindexer + MarkDups + BAMindexer + BamQC + bam2bedI + [ bedcoverage, bed2bw + rfd ] ]
+//                            ] + collectBpipeLogs + MultiQC
+//     }
 
 
 //MAIN PIPELINE TASK (DIRECT mode - optional) 
