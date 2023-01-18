@@ -15,7 +15,7 @@ Two output modes are available:
 A flowchart of GLOE-Pipe, detailing each one of its steps, can be found [here](https://app.diagrams.net/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=GLOEseq_pipeline.html#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D12Ke7Tz_CBC-Hke5WHT6FVtbFMwhMCQew%26export%3Ddownload).
 
 ## System Requirements
-GLOE-Pipe is designed to run in a high-performance cluster (HPC) environment with a Linux distribution (*e.g.* Debian 9), Bpipe (version 0.9.9.3) as the domain specific language (DSL), and Lmod (version 6.6) as the module system.
+GLOE-Pipe is designed to run in a high-performance cluster (HPC) environment with a Linux distribution (*e.g.* Debian 9), Bpipe (version 0.9.9.5) as the domain specific language (DSL), and Lmod (version 6.6) as the module system.
 
 ## Prerequisites
 
@@ -25,6 +25,7 @@ GLOE-Pipe is designed to run in a high-performance cluster (HPC) environment wit
 | --- | --- | --- |
 | `FastQC` | 0.11.9 | https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ |
 | `Trimmomatic` | 0.36 | http://www.usadellab.org/cms/?page=trimmomatic |
+| `Cutadapt` | 4.0 | https://cutadapt.readthedocs.io/en/stable/ |
 | `Bowtie2` | 2.4.5 | http://bowtie-bio.sourceforge.net/bowtie2/index.shtml |
 | `Samtools` | 1.10 | http://samtools.sourceforge.net/ |
 | `BEDTools` | 2.27.1 | https://bedtools.readthedocs.io/en/latest/ |
@@ -33,6 +34,7 @@ GLOE-Pipe is designed to run in a high-performance cluster (HPC) environment wit
 | `MACS2` | 2.1.1 | https://github.com/taoliu/MACS |
 | `deepTools` | 3.5.1 | https://deeptools.readthedocs.io/en/develop |
 | `MultiQC` | 1.9 | https://github.com/ewels/MultiQC |
+| `Picard` | 2.20.3 | https://broadinstitute.github.io/picard/ |
 | `R` | 4.1.2 | https://www.r-project.org/ |
 | `ChIPseeker` | 1.30.0 | https://bioconductor.org/packages/release/bioc/html/ChIPseeker.html |
 | `rtracklayer` | 1.54.0 | https://bioconductor.org/packages/release/bioc/html/rtracklayer.html |
