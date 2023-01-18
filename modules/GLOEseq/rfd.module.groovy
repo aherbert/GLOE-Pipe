@@ -2,7 +2,7 @@ rfd = {
 	doc title: "rfd",
 		desc:  "Calculate the proportions rightward- and leftward- moving forks within each window (1kb) [RFD=(C-W)/(C+W)] and generate RFD track",
 		constraints: "none.",
-		bpipe_version: "tested with bpipe 0.9.9.3.slurm",
+		bpipe_version: "tested with bpipe 0.9.9.5.slurm",
 		author: "Giuseppe Petrosino"
 		
 		output.dir=RFD
