@@ -2,7 +2,7 @@ macs2 = {
     doc title: "MACS2",
         desc:  "MACS2 wrapper",
         constraints: "Only performs treatment versus control breakcalling",
-        bpipe_version: "tested with bpipe 0.9.9.3.slurm",
+        bpipe_version: "tested with bpipe 0.9.9.5.slurm",
         author: "Giuseppe Petrosino"
 
     output.dir = RESULTS + "/macs2"
