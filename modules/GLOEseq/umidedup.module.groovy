@@ -2,7 +2,7 @@ umidedup = {
     doc title: "deduplication based on UMIs",
         desc:  "Deduplication of mapped data using UMIs with umi_tools",
         constraints: "",
-        bpipe_version: "tested with bpipe 0.9.9.3.slurm",
+        bpipe_version: "tested with bpipe 0.9.9.5.slurm",
         author: "Giuseppe Petrosino"
 
     output.dir = MAPPED
