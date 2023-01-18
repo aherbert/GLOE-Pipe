@@ -1,7 +1,7 @@
 Trimmomatic = {
 	doc title: "Trimmomatic",
 		desc:  "A flexible read trimming tool for Illumina NGS data",
-		bpipe_version: "tested with bpipe 0.9.9.3.slurm",
+		bpipe_version: "tested with bpipe 0.9.9.5.slurm",
 		author: "Giuseppe Petrosino"
 
 	output.dir   = TRIMREADS
