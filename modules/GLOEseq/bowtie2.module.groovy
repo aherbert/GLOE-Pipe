@@ -2,7 +2,7 @@ bowtie2 = {
     doc title: "Bowtie2 SE alignment",
         desc:  "Align single end reads",
         constraints: "Samtools multithreaded version expected (>=1.2).",
-        bpipe_version: "tested with bpipe 0.9.9.3.slurm",
+        bpipe_version: "tested with bpipe 0.9.9.5.slurm",
         author: "Giuseppe Petrosino"
 
     output.dir = MAPPED
