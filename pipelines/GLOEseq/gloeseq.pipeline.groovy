@@ -22,6 +22,10 @@ load MODULE_FOLDER + "GLOEseq/bowtie2.module.groovy"
 load MODULE_FOLDER + "GLOEseq/bowtie2_pe.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bowtie2_pe.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/markdups.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/markdups.module.groovy"
+
+
 load MODULE_FOLDER + "GLOEseq/bamindexer.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bamindexer.module.groovy"
 
