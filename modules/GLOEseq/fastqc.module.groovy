@@ -8,11 +8,11 @@ FastQC = {
 	output.dir   = FASTQC_OUTDIR
 	def FASTQC_FLAGS = "--extract --quiet"
 	
-	transform(".fastq.gz") to ("_fastqc.zip") {
+	transform("*.fastq.gz") to ("_fastqc.zip") {
 		exec """
 			module load fastqc/${FASTQC_VERSION} &&
 
-			fastqc $FASTQC_FLAGS -o $output.dir $input
+			fastqc $FASTQC_FLAGS -o $output.dir $inputs
 		""","FastQC"
 	}
 
