@@ -22,15 +22,17 @@ load MODULE_FOLDER + "GLOEseq/bowtie2.module.groovy"
 load MODULE_FOLDER + "GLOEseq/bowtie2_pe.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bowtie2_pe.module.groovy"
 
-load MODULE_FOLDER + "GLOEseq/markdups.vars.groovy"
-load MODULE_FOLDER + "GLOEseq/markdups.module.groovy"
-
-
 load MODULE_FOLDER + "GLOEseq/bamindexer.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bamindexer.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/singlereads.module.groovy"
+load MODULE_FOLDER + "GLOEseq/singlereads.vars.groovy"
+
 load MODULE_FOLDER + "GLOEseq/bamqc.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bamqc.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/markdups.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/markdups.module.groovy"
 
 load MODULE_FOLDER + "GLOEseq/bam2bedD.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bam2bedD.module.groovy"
@@ -68,7 +70,7 @@ load MODULE_FOLDER + "miscellaneous/collectbpipes.module.2.groovy"
 //MAIN PIPELINE TASK - SINGLE END READS with Trimmomatic (INDIRECT mode - default)
 run {
             "%.fastq.gz" *
-           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + BamQC + bam2bedI + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  +
+           [ FastQC.using(subdir="raw"), Trimmomatic + [ FastQC.using(subdir="trimmed"), bowtie2 + BAMindexer + BamQC + bam2bedI + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  +
            [ breaks_annotation, breaks_detected ] + collectBpipeLogs + MultiQC
 }
 
@@ -96,7 +98,7 @@ run {
 //                         ] +
 //          "%.R*.fastq.gz" * [
 //               Cutadapt_pe + 
-//               [ FastQC.using(subdir:"trimmed"), bowtie2_pe + BAMindexer + MarkDups + BAMindexer + BamQC + bam2bedI + [ bedcoverage, bed2bw + rfd ] ]
+//               [ FastQC.using(subdir:"trimmed"), bowtie2_pe + BAMindexer + MarkDups + BAMindexer + BamQC + SingleReads + BAMindexer + bam2bedI + [ bedcoverage, bed2bw + rfd ] ]
 //                            ] + collectBpipeLogs + MultiQC
 //     }
 
@@ -104,7 +106,7 @@ run {
 //MAIN PIPELINE TASK (DIRECT mode - optional) 
 //run {
 //	    "%.fastq.gz" * 
-//	   [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  + 
+//	   [ FastQC.using(subdir="raw"), Trimmomatic + [ FastQC.using(subdir:"trimmed"), bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ] + macs2 ] ]  + 
 //	   [ breaks_annotation, breaks_detected ] + collectBpipeLogs + MultiQC
 //}
 
@@ -113,5 +115,5 @@ run {
 //MAIN PIPELINE TASK (DIRECT mode - optional) USED FOR THE SAMPLES WITH UMIs 
 //run {
 //           "%.R*.fastq.gz" * [ AddUmiToFastq ] + "%.fastq.gz" *
-//           [ FastQC, Trimmomatic + [ FastQC, bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] + umidedup + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] ] ] + collectBpipeLogs + MultiQC
+//           [ FastQC.using(subdir="raw"), Trimmomatic + [ FastQC.using(subdir:"trimmed"), bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] + umidedup + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] ] ] + collectBpipeLogs + MultiQC
 //}
