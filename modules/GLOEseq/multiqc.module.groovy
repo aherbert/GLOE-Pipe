@@ -8,12 +8,18 @@ MultiQC = {
 	output.dir   = MultiQC_OUTDIR
 	def MultiQC_FLAGS = "--ignore .bpipe"
 	
-	produce("multiqc_report.html") {
+    produce("multiqc_report.html") {
 		exec """
-			module load MultiQC/${MultiQC_VERSION} &&
 
-			multiqc $QC $LOGS $MultiQC_FLAGS -o $output.dir 
+                if [ -e "${QC}/fastqc/trimmed" ]; then
+                       mkdir -p ${output.dir};
+                       mkdir -p ${output.dir}/raw;
+            	       multiqc $QC/fastqc/raw $MultiQC_FLAGS -o ${output.dir}/raw;
+                fi &&  
+  
+
+                module load MultiQC/${MultiQC_VERSION} &&
+                multiqc $QC $LOGS $MultiQC_FLAGS -o $output.dir
 		""","MultiQC"
 	}
-
 }
