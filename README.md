@@ -82,6 +82,7 @@ Start running GLOE-Pipe (NB: **the indirect mode is the default**)
 - To use the direct mode, the main pipeline needs to be changed in the `gloeseq.pipeline.groovy` file
 - The `REs` folder contains bed files that include information on the break sites produced by the restriction endonucleases used in the GLOE-seq article
 - For the yeast genome, the break sites that overlap with transposons, telomeres and mtDNA are excluded
+- In case of an unbalanced or high number of reads assigned to the mitochondrial genome, the chrM can be excluded for computing the normalization using '--ignoreForNormalization chrM' in the `essential.vars.groovy` file. 
 
 ## References
 - Preparation and Analysis of GLOE-Seq Libraries for Genome-Wide Mapping of DNA Replication Patterns, Single-Strand Breaks, and Lesions.
