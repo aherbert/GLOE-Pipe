@@ -11,10 +11,13 @@ umidedup = {
 	transform(".bam") to (".umidedup.bam") {
 		exec """
 
-				module load umitools/${UMITOOLS_VERSION} &&
+		module load umitools/${UMITOOLS_VERSION} &&
 
-				umi_tools dedup -I $input -S $output --output-stats=${output.prefix}.stats
-
+                if [[ "${ESSENTIAL_PAIRED}" == "yes" ]]; then
+			                    umi_tools dedup -I $input --paired -S $output --output-stats=${output.prefix}.stats;
+                else
+			                    umi_tools dedup -I $input -S $output --output-stats=${output.prefix}.stats;
+                fi;
 
         ""","umidedup"
     }
