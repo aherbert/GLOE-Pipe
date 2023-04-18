@@ -1,5 +1,5 @@
-SingleReads = {
-	doc title: "SingleReads",
+SingleReads3ends = {
+	doc title: "SingleReads3ends",
                 desc:  "Select only R1 mapped in correct orientation and within insert size. https://ppotato.wordpress.com/2010/08/25/samtool-bitwise-flag-paired-reads/",
                 constraints: "Samtools multithreaded version expected (>=1.2)",
                 bpipe_version: "tested with bpipe 0.9.9.5.slurm",
@@ -18,6 +18,6 @@ SingleReads = {
             samtools merge $SAMTOOLS_FLAGS $output ${output.prefix}_bowtie2_q30_99.bam ${output.prefix}_bowtie2_q30_83.bam &&
             rm ${output.prefix}_bowtie2_q30_99.bam ${output.prefix}_bowtie2_q30_83.bam
 
-          ""","SingleReads"
+          ""","SingleReads3ends"
 	}
 }
