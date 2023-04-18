@@ -3,6 +3,7 @@ ESSENTIAL_TRIMMOMATIC=".../TruSeq3-SE.fa" // full path to the adapter fasta file
 ESSENTIAL_MIN_READLENGTH=36
 ESSENTIAL_BOWTIE_REF=".../genome" // full path to the reference index files for Bowtie2
 ESSENTIAL_BOWTIE_GENOME_INDEX="../saccer3.chrom.sizes" // chromosome sizes file of the reference genome
+ESSENTIAL_PAIRED="no" // single-end mode ("no") or paired-end mode ("yes") according to the sequencing mode.
 ESSENTIAL_TXDB="TxDb.Scerevisiae.UCSC.sacCer3.sgdGene" // needed for breaks annotation
 ESSENTIAL_ANNODB="org.Sc.sgd.db" // needed for breaks annotation
 ESSENTIAL_TSS=200 // TSS region parameter from -200 to +200
@@ -23,6 +24,7 @@ ESSENTIAL_EB3=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI.bed" // Expected Not
 //global vars that will be reused in some global vars
 PROJECT=ESSENTIAL_PROJECT
 LOGS=PROJECT + "/logs"
+MERGEDREADS=PROJECT + "/rawdata_merged"
 UMIREADS=PROJECT + "/rawdata_umi"
 TRIMREADS=PROJECT + "/rawdata_trimmed"
 MAPPED=PROJECT + "/mapped"
