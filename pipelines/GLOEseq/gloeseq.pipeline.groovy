@@ -16,17 +16,38 @@ load MODULE_FOLDER + "GLOEseq/cutadapt_pe.module.groovy"
 load MODULE_FOLDER + "GLOEseq/fastqc.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/fastqc.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/merge_fastq.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/merge_fastq.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/transfer_fastq.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/transfer_fastq.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/barcode5ends.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/barcode5ends.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/barcode3ends.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/barcode3ends.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/AddUmiToFastq.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/AddUmiToFastq.module.groovy"
+
 load MODULE_FOLDER + "GLOEseq/bowtie2.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bowtie2.module.groovy"
 
 load MODULE_FOLDER + "GLOEseq/bowtie2_pe.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bowtie2_pe.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/umidedup.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/umidedup.module.groovy"
+
 load MODULE_FOLDER + "GLOEseq/bamindexer.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bamindexer.module.groovy"
 
-load MODULE_FOLDER + "GLOEseq/singlereads.module.groovy"
-load MODULE_FOLDER + "GLOEseq/singlereads.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/singlereads5ends.module.groovy"
+load MODULE_FOLDER + "GLOEseq/singlereads5ends.vars.groovy"
+
+load MODULE_FOLDER + "GLOEseq/singlereads3ends.module.groovy"
+load MODULE_FOLDER + "GLOEseq/singlereads3ends.vars.groovy"
 
 load MODULE_FOLDER + "GLOEseq/bamqc.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bamqc.module.groovy"
@@ -114,4 +135,17 @@ run {
 //run {
 //           "%.R*.fastq.gz" * [ AddUmiToFastq ] + "%.fastq.gz" *
 //           [ FastQC.using(subdir="raw"), Trimmomatic + [ FastQC.using(subdir:"trimmed"), bowtie2 + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] + umidedup + BAMindexer + bam2bedD + [ bedcoverage, bed2bw ] ] ] + collectBpipeLogs + MultiQC
+//}
+
+
+////MAIN PIPELINE TASK - GLOE-seq v2 (DIRECT mode)
+run {
+//	"%.R*.fastq.gz" * [ 
+//                         Merge_fastq 
+//                      ] +
+//        "%.R*.merged.fastq.gz" * [ 
+//                             FastQC, 
+//                             Barcode5ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads5ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ]],
+//                             Barcode3ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads3ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ]] 
+//                      ] + collectBpipeLogs + MultiQC
 //}
