@@ -26,6 +26,7 @@ GLOE-Pipe is designed to run in a high-performance cluster (HPC) environment wit
 | `FastQC` | 0.11.9 | https://www.bioinformatics.babraham.ac.uk/projects/fastqc/ |
 | `Trimmomatic` | 0.36 | http://www.usadellab.org/cms/?page=trimmomatic |
 | `Cutadapt` | 4.0 | https://cutadapt.readthedocs.io/en/stable/ |
+| `UMI-tools` | 1.1.2 | https://umi-tools.readthedocs.io/en/latest/ |
 | `Bowtie2` | 2.4.5 | http://bowtie-bio.sourceforge.net/bowtie2/index.shtml |
 | `Samtools` | 1.10 | http://samtools.sourceforge.net/ |
 | `BEDTools` | 2.27.1 | https://bedtools.readthedocs.io/en/latest/ |
