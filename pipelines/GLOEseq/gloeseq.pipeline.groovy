@@ -19,9 +19,6 @@ load MODULE_FOLDER + "GLOEseq/fastqc.module.groovy"
 load MODULE_FOLDER + "GLOEseq/merge_fastq.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/merge_fastq.module.groovy"
 
-load MODULE_FOLDER + "GLOEseq/transfer_fastq.vars.groovy"
-load MODULE_FOLDER + "GLOEseq/transfer_fastq.module.groovy"
-
 load MODULE_FOLDER + "GLOEseq/barcode5ends.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/barcode5ends.module.groovy"
 
@@ -117,7 +114,7 @@ run {
 //                         ] +
 //          "%.R*.fastq.gz" * [
 //               Cutadapt_pe + 
-//               [ FastQC.using(subdir:"trimmed"), bowtie2_pe + BAMindexer + MarkDups + BAMindexer + BamQC + SingleReads + BAMindexer + bam2bedI + [ bedcoverage, bed2bw + rfd ] ]
+//               [ FastQC.using(subdir:"trimmed"), bowtie2_pe + BAMindexer + MarkDups + BAMindexer + BamQC + SingleReads3ends + BAMindexer + bam2bedI + [ bedcoverage, bed2bw + rfd ] ]
 //                            ] + collectBpipeLogs + MultiQC
 //     }
 
@@ -139,7 +136,7 @@ run {
 
 
 ////MAIN PIPELINE TASK - GLOE-seq v2 (DIRECT mode)
-run {
+//run {
 //	"%.R*.fastq.gz" * [ 
 //                         Merge_fastq 
 //                      ] +
