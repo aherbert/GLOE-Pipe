@@ -24,8 +24,8 @@ Merge_fastq = {
 
 
 
-               paste -d "" <(zcat $input2) <(zcat $input1 | sed 's/^+.*//' | sed 's/^@.*//') | gzip > ${MERGEDREADS}/${OUTPUTFILE}.R1.merged.fastq.gz &&
-               cp $input3 ${MERGEDREADS}/${OUTPUTFILE}.R3.merged.fastq.gz
+               paste -d "" <(zcat $input3) <(zcat $input1 | sed 's/^+.*//' | sed 's/^@.*//') | gzip > ${MERGEDREADS}/${OUTPUTFILE}.R1.merged.fastq.gz &&
+               cp $input2 ${MERGEDREADS}/${OUTPUTFILE}.R2.merged.fastq.gz
 
         ""","Merge_fastq"
     }
