@@ -26,7 +26,7 @@ Barcode3ends = {
 
 		module load umitools/${UMITOOLS_VERSION} &&
 
-        umi_tools extract --extract-method=regex --bc-pattern='^(?P<discard_1>[AG][CT][AG][CT][AG][CT]){s<=1}(?P<umi_1>.{6})' -I $input1 --stdout ${UMIREADS}/${SAMPLENAME_BASE_PRUNED}.R1.merged.end3.fastq.gz --read2-in $input2 --read2-out=${UMIREADS}/${SAMPLENAME_BASE_PRUNED}.R3.merged.end3.fastq.gz
+        umi_tools extract --extract-method=regex --bc-pattern='^(?P<discard_1>[AG][CT][AG][CT][AG][CT]){s<=1}(?P<umi_1>.{6})' -I $input1 --stdout ${UMIREADS}/${SAMPLENAME_BASE_PRUNED}.R1.merged.end3.fastq.gz --read2-in $input2 --read2-out=${UMIREADS}/${SAMPLENAME_BASE_PRUNED}.R2.merged.end3.fastq.gz
 
 
         ""","Barcode3ends"
