@@ -140,7 +140,7 @@ run {
 //	"%.R*.fastq.gz" * [ 
 //                         Merge_fastq 
 //                      ] +
-//        "%.R*.merged.fastq.gz" * [ 
+//        "%.R*.m.fastq.gz" * [ 
 //                             FastQC, 
 //                             Barcode5ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads5ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ]],
 //                             Barcode3ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads3ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ]] 
