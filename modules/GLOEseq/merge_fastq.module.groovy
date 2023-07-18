@@ -15,7 +15,7 @@ Merge_fastq = {
        OUTPUTFILE = (OUTPUTFILE =~ /.R1.fastq.gz/).replaceFirst("")
 
 
-    produce(OUTPUTFILE + "*.merged.fastq.gz") {
+    produce(OUTPUTFILE + "*.m.fastq.gz") {
 		exec """
 
                         if [ -n "\$SLURM_JOBID" ]; then
@@ -24,8 +24,8 @@ Merge_fastq = {
 
 
 
-               paste -d "" <(zcat $input3) <(zcat $input1 | sed 's/^+.*//' | sed 's/^@.*//') | gzip > ${MERGEDREADS}/${OUTPUTFILE}.R1.merged.fastq.gz &&
-               cp $input2 ${MERGEDREADS}/${OUTPUTFILE}.R2.merged.fastq.gz
+               paste -d "" <(zcat $input3) <(zcat $input1 | sed 's/^+.*//' | sed 's/^@.*//') | gzip > ${MERGEDREADS}/${OUTPUTFILE}.R1.m.fastq.gz &&
+               cp $input2 ${MERGEDREADS}/${OUTPUTFILE}.R2.m.fastq.gz
 
         ""","Merge_fastq"
     }
