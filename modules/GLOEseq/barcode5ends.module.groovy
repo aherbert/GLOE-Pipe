@@ -9,7 +9,7 @@ Barcode5ends = {
 
     def SAMPLENAME = new File(input.prefix.prefix)
     def SAMPLENAME_BASE = SAMPLENAME.getName()
-    def SAMPLENAME_BASE_PRUNED = SAMPLENAME_BASE.replace(".R1.merged", "") // delete .R1 in combined log file of pe design
+    def SAMPLENAME_BASE_PRUNED = SAMPLENAME_BASE.replace(".R1.m", "") // delete .R1 in combined log file of pe design
 
 
 	transform("*.fastq.gz") to (".end5.fastq.gz") {
@@ -26,7 +26,7 @@ Barcode5ends = {
 
 		module load umitools/${UMITOOLS_VERSION} &&
 
-        umi_tools extract --extract-method=regex --bc-pattern='^(?P<discard_1>[CT][AG][CT][AG][CT][AG]){s<=1}(?P<umi_1>.{6})' -I $input1 --stdout ${UMIREADS}/${SAMPLENAME_BASE_PRUNED}.R1.merged.end5.fastq.gz --read2-in $input2 --read2-out=${UMIREADS}/${SAMPLENAME_BASE_PRUNED}.R2.merged.end5.fastq.gz
+        umi_tools extract --extract-method=regex --bc-pattern='^(?P<discard_1>[CT][AG][CT][AG][CT][AG]){s<=1}(?P<umi_1>.{6})' -I $input1 --stdout ${UMIREADS}/${SAMPLENAME_BASE_PRUNED}.R1.m.end5.fastq.gz --read2-in $input2 --read2-out=${UMIREADS}/${SAMPLENAME_BASE_PRUNED}.R2.m.end5.fastq.gz
 
 
         ""","Barcode5ends"
