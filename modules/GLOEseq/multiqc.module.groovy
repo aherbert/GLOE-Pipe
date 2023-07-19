@@ -20,8 +20,6 @@ MultiQC = {
                 fi
 
 				if [ -e "${QC}/fastqc/5ends" ]; then
-                       mkdir -p ${output.dir}/raw;
-                       multiqc $QC/fastqc/raw $MultiQC_FLAGS -o ${output.dir}/raw;
                        mkdir -p ${output.dir}/5ends;
                        multiqc $QC/fastqc/5ends $MultiQC_FLAGS -o ${output.dir}/5ends;
                        mkdir -p ${output.dir}/3ends;
