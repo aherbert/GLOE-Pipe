@@ -58,6 +58,12 @@ load MODULE_FOLDER + "GLOEseq/bam2bedD.module.groovy"
 load MODULE_FOLDER + "GLOEseq/bam2bedI.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bam2bedI.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/bam2bedD5ends.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/bam2bedD5ends.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/bam2bedI5ends.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/bam2bedI5ends.module.groovy"
+
 load MODULE_FOLDER + "GLOEseq/bedcoverage.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bedcoverage.module.groovy"
 
@@ -142,7 +148,7 @@ run {
 //                      ] +
 //        "%.R*.m.fastq.gz" * [ 
 //                             FastQC, 
-//                             Barcode5ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads5ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ]],
+//                             Barcode5ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads5ends + BAMindexer + bam2bedI5ends + [ bedcoverage, bed2bw + rfd ]],
 //                             Barcode3ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads3ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ]] 
 //                      ] + collectBpipeLogs + MultiQC
 //}
