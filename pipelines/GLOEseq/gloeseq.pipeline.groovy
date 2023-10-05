@@ -143,12 +143,12 @@ run {
 
 ////MAIN PIPELINE TASK - GLOE-seq v2 (DIRECT mode)
 //run {
-//	"%.R*.fastq.gz" * [ 
+//        "%.R*.fastq.gz" * [ 
 //                         Merge_fastq 
-//                      ] +
-//        "%.R*.m.fastq.gz" * [ 
-//                             FastQC, 
-//                             Barcode5ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads5ends + BAMindexer + bam2bedI5ends + [ bedcoverage, bed2bw + rfd ]],
-//                             Barcode3ends + [ bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads3ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ]] 
-//                      ] + collectBpipeLogs + MultiQC
+//                          ] +
+//	    "%.R*.m.fastq.gz" * 
+//	   [ FastQC.using(subdir="raw"), 
+//		Barcode5ends + [ FastQC.using(subdir:"5ends"), bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads5ends + BAMindexer + bam2bedD5ends + [ bedcoverage, bed2bw + rfd ] ], 
+//		Barcode3ends + [ FastQC.using(subdir:"3ends"), bowtie2_pe + BAMindexer + umidedup + BAMindexer + BamQC + SingleReads3ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ] ] ] + 
+//	   collectBpipeLogs + MultiQC
 //}
