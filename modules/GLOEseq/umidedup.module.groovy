@@ -14,9 +14,9 @@ umidedup = {
 		module load umitools/${UMITOOLS_VERSION} &&
 
                 if [[ "${ESSENTIAL_PAIRED}" == "yes" ]]; then
-			                    umi_tools dedup -I $input --paired -S $output --output-stats=${output.prefix}.stats;
+			                    umi_tools dedup --method unique -I $input --paired -S $output --output-stats=${output.prefix}.stats;
                 else
-			                    umi_tools dedup -I $input -S $output --output-stats=${output.prefix}.stats;
+			                    umi_tools dedup --method unique -I $input -S $output --output-stats=${output.prefix}.stats;
                 fi;
 
         ""","umidedup"
