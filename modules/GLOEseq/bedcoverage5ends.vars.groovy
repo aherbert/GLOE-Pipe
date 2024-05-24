@@ -1,0 +1,5 @@
+BEDCOVERAGE_CORES="--numberOfProcessors " + Integer.toString(ESSENTIAL_THREADS)
+BEDCOVERAGE_OTHER=ESSENTIAL_BEDCOVERAGE + " --outFileFormat bigwig"
+BREAKS_5END="ExpectedBreaks5End=" + ESSENTIAL_RE_5end
+QPCR_CUT_EFF="qPCR=" + ESSENTIAL_QPCR
+BREAKS_OUTDIR_5END="out="+ ALPHA + "/5end"
