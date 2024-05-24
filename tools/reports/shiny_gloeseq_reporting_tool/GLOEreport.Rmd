@@ -1,0 +1,174 @@
+---
+title: "SHINYREPS_PROJECT"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    css: styles.css
+---
+
+<div class="contentbox">
+
+```{r Initialise, echo=F,result='hide',error=F,warning=F,message=F}
+require(rmarkdown)
+require(knitr)
+require(Cairo)                                                    
+knitr::opts_chunk[['set']](dev='CairoPNG')
+source('GLOE.shinyrep.helpers.R')
+loadGlobalVars()
+targets <<- GLOEhelper.init("readTargets")
+peaks   <<- GLOEhelper.init("readPeaks")
+``` 
+
+
+## Raw reads QC ## {.tabset .tabset-pills}
+
+The raw sequence reads of all samples are analysed with the popular FastQC tool (http://www.bioinformatics.babraham.ac.uk/projects/fastqc/).
+
+1. The "Duplication levels" plots show the proportion of the library which is made up of sequences in each of the different duplication level bins. It is useful for the assessment of the NGS library complexity and the presence or absence of PCR over-amplification during library prep. There are two lines on the plot. The blue line takes the full sequence set and shows how its duplication levels are distributed. In the red plot the sequences are de-duplicated and the proportions shown are the proportions of the deduplicated set which come from different duplication levels in the original data.
+
+2. The "Read qualities" Box-Whisker plots show the range of quality values across all base positions:
+    (i) The central red line is the median value,
+    (ii) The yellow box represents the inter-quartile range (25-75%),
+    (iii) The upper and lower whiskers represent the 10% and 90% points,
+    (iv) The blue line represents the mean quality.
+The y-axis on the graph shows the Phred quality scores, which are logarithmically related to the base-calling error probabilities. The higher the score the better the base call. The background of the graph divides the y axis into very good quality calls (green), calls of reasonable quality (orange), and calls of poor quality (red). Typically, the majority of calls on all base positions fall into the green area.
+
+3. The "Adapter content" plots show a cumulative percentage count of the proportion of your library which has seen each of the adapter sequences at each position. Once a sequence has been seen in a read it is counted as being pres
+ent right through to the end of the read so the percentages you see will only increase as the read length goes on.
+
+4. The "Sequence bias" plots show the proportion of each base (% G, A, T and C) at each position. In a random library you would expect that there would be little to no difference between the different bases of a sequence run, so t
+he lines in this plot should run parallel with each other. The relative amount of each base should reflect the overall amount of these bases in your genome, but in any case they should not be hugely imbalanced from each other.
+ 
+```{r FastQC_paragraph, echo=F,results='asis',error=F,warning=F,message=F}
+cat(GLOEhelper.Fastqc(web=F),sep="\n")
+```
+
+## Read mapping ## {.tabset .tabset-pills}
+
+Mapping to the reference genome was done using the established NGS mapping tool Bowtie (http://bowtie-bio.sourceforge.net/index.shtml). The mapping statistics show the total number of reads delivered to the aligner ("all reads"), the number of uniquely mapping reads ("mapped"), the reads that failed to align ("unmapped"), the number of reads discarded because of mapping to multiple positions ("too many map. pos.") and the number of duplicate reads ("duplicates") amongst the uniquely mapped reads:
+
+```{r Bowtie_paragraph, echo=F,results='asis',error=F,warning=F,message=F}
+cat(GLOEhelper.Bowtie(),sep="\n")
+```
+
+## Mapping to rRNAs and the genome {.tabset .tabset-pills}
+
+Using FastQScreen (http://www.bioinformatics.babraham.ac.uk/projects/fastq_screen/), the amount of reads also mapping to rRNAs was determined.
+To that aim, reads were mapped to both; the genome and all known rRNAs. Results are shown below.
+
+```{r fastqscreen_paragraph, echo=F, results='asis', error=F, warning=F, message=F}
+cat(GLOEhelper.fastqscreen(), sep="\n")
+```
+
+## GLOE-seq breaks {.tabset .tabset-pills}
+
+The number of breaks called at the default false-discovery rate (FDR) cutoff of 5% by MACS2 (https://github.com/taoliu/MACS/) in the different comparisons is shown below.
+
+```{r PeakCall_paragraph, echo=F,results='asis',error=F,warning=F,message=F}
+peaks <- GLOEhelper.init("readPeaks")
+
+l <- lapply(peaks,function(x) {
+	x <- table(x$chr)
+	xx <- as.numeric(x)
+	names(xx) <- names(x)
+	xx
+})
+p <- Reduce(function(x,y) {
+	z <- merge(x,y,all=T,by=0)
+	rownames(z) <- z[,1]
+	z[,-1]
+},l)
+#colnames(p) <- 1:ncol(p)
+colnames(p) <- names(l)
+
+# print the legend
+#cat("",fill=T)
+#cat(kable(data.frame(column=1:length(l),sample=names(l))),sep="\n")
+#cat("",fill=T)
+
+# print the peaks table
+cat("",fill=T)
+cat(kable(p,row.names=T),sep="\n")
+cat("",fill=T)
+```
+
+## GLOE breaks per Chromosome {.tabset .tabset-pills}
+
+The plots show the percentage of breaks of each chromosome.
+
+```{r break_per_chromosome_paragraph, echo=F, results='asis', error=F, warning=F, message=F}
+    cat(GLOEhelper.breakperChromosome(web=F),sep="\n")
+```
+
+## GLOE breaks coverage over Chromosomes  {.tabset .tabset-pills}
+
+The Coverage plots visualize the break locations over the whole genome, calculating the coverage of breaks over chromosomes. 
+
+```{r peak_annotation_coverage_paragraph, echo=F, results='asis', error=F, warning=F, message=F}
+    cat(GLOEhelper.peakAnnotationCoverage(web=F),sep="\n")
+```
+
+## UpSet Plot {.tabset .tabset-pills}
+
+UpSet plots show interactions between the various genomic features and GLOE breaks detected.
+
+```{r peak_annotation_upset_paragraph, echo=F, results='asis', error=F, warning=F, message=F}
+    cat(GLOEhelper.peakAnnotationUpSet(web=F),sep="\n")
+```
+
+## Restriction Enzyme Breaks {.tabset .tabset-pills}
+
+```{r BREAKSDETECTED_paragraph, echo=F,results='asis',error=F,warning=F,message=F}
+cat(GLOEhelper.BREAKSDETECTED.RE1(),sep="\n")
+cat("\n", fill=T)
+cat(GLOEhelper.BREAKSDETECTED.RE2(),sep="\n")
+cat("\n", fill=T)
+cat(GLOEhelper.BREAKSDETECTED.RE3(),sep="\n")
+```
+
+## qGLOE-Seq stats (3' ends) {.tabset .tabset-pills}
+
+This table reports the number and the percentage of reads assigned to the NotI sites (only 3'ends), excluding the reads mapped to mitochondrial genome. Furthermore, it reports Alpha ([# NotI reads / qPCR cutting] / # NotI sites) and Breaks per genome ([# Total reads - # NotI reads] / Alpha) values.
+
+
+```{r alpha_paragraph, echo=F, results='asis', error=F, warning=F, message=F, fig.align='center', fig.height=8, out.width="90%"}
+alpha <- GLOEhelper.ALPHA.3end()
+
+cat(alpha$table.3end, sep="\n")
+cat("\n", fill = T)
+
+cat("### Plot relevant stats\n", fill=T)
+grid.arrange(alpha$total_count.p, alpha$quant_site.p, alpha$breaks_genome.p, nrow = 2)
+cat("\n", fill = T)
+
+cat("### Plot reads counts at each site used for quantification normalized against total number of reads at all sites per sample\n", fill=T)
+plot(alpha$reads_quant.plot)
+cat("\n", fill = T)
+```
+
+## qGLOE-Seq stats (5' ends) {.tabset .tabset-pills}
+
+This table reports the number and the percentage of reads assigned to the NotI sites (only 5'ends), excluding the reads mapped to mitochondrial genome. Furthermore, it reports Alpha ([# NotI reads / qPCR cutting] / # NotI sites) and Breaks per genome ([# Total reads - # NotI reads] / Alpha) values.
+
+```{r alpha_5end_paragraph, echo=F, results='asis', error=F, warning=F, message=F, fig.align='center', fig.height=8, out.width="90%"}
+alpha <- GLOEhelper.ALPHA.5end()
+
+cat(alpha$table.5end, sep="\n")
+cat("\n", fill = T)
+
+cat("### Plot relevant stats\n", fill=T)
+grid.arrange(alpha$total_count.p, alpha$quant_site.p, alpha$breaks_genome.p, nrow = 2)
+cat("\n", fill = T)
+
+cat("### Plot reads counts at each site used for quantification normalized against total number of reads at all sites per sample\n", fill=T)
+plot(alpha$reads_quant.plot)
+cat("\n", fill = T)
+```
+
+## Used tools and versions for this analysis
+```{r ToolVersions_paragraph, echo=F, results='asis', error=F, warning=F, message=F}
+   cat(Toolhelper.ToolVersions(), sep="\n")
+```
+
+</div>
