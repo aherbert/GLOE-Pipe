@@ -16,6 +16,9 @@ load MODULE_FOLDER + "GLOEseq/cutadapt_pe.module.groovy"
 load MODULE_FOLDER + "GLOEseq/fastqc.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/fastqc.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/fastqscreen.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/fastqscreen.module.groovy"
+
 load MODULE_FOLDER + "GLOEseq/merge_fastq.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/merge_fastq.module.groovy"
 
@@ -67,6 +70,12 @@ load MODULE_FOLDER + "GLOEseq/bam2bedI5ends.module.groovy"
 load MODULE_FOLDER + "GLOEseq/bedcoverage.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bedcoverage.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/bedcoverage3ends.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/bedcoverage3ends.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/bedcoverage5ends.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/bedcoverage5ends.module.groovy"
+
 load MODULE_FOLDER + "GLOEseq/bed2bw.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/bed2bw.module.groovy"
 
@@ -90,6 +99,8 @@ load MODULE_FOLDER + "GLOEseq/multiqc.module.groovy"
 
 load MODULE_FOLDER + "miscellaneous/collectbpipes.module.2.groovy"
 
+load MODULE_FOLDER + "GLOEseq/shinyreports.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/shinyreports.module.groovy"
 
 //MAIN PIPELINE TASK - SINGLE END READS with Trimmomatic (INDIRECT mode - default)
 run {
@@ -124,6 +135,19 @@ run {
 //                            ] + collectBpipeLogs + MultiQC
 //     }
 
+//MAIN PIPELINE TASK - PAIRED END READS With Cutadapt (DIRECT mode) 
+//run {
+//
+//         "%.fastq.gz" * [
+//              FastQC.using(subdir="raw")
+//                         ] +
+//          "%.R*.fastq.gz" * [
+//               Cutadapt_pe + [ FastQC.using(subdir:"trimmed"), bowtie2_pe + BAMindexer + BamQC ]
+//                         ] +
+//           "%.bam" * [
+//               SingleReads3ends + [ BAMindexer + bam2bedD + [ bedcoverage3ends + bedcoverage, bed2bw ] + macs2 ]
+//               ] + [ breaks_detected ] + collectBpipeLogs + MultiQC
+//    }
 
 //MAIN PIPELINE TASK (DIRECT mode - optional) 
 //run {
@@ -144,11 +168,11 @@ run {
 ////MAIN PIPELINE TASK - GLOE-seq v2 (DIRECT mode)
 //run {
 //        "%.R*.fastq.gz" * [ 
-//                         Merge_fastq 
+//                         FastqScreen, Merge_fastq 
 //                          ] +
 //	    "%.R*.m.fastq.gz" * 
-//	   [ FastQC.using(subdir="raw"), 
-//		Barcode5ends + [ FastQC.using(subdir:"5ends"), bowtie2_pe + BAMindexer + BamQC + SingleReads5ends + BAMindexer + bam2bedD5ends + [ bedcoverage, bed2bw + rfd ] ], 
-//		Barcode3ends + [ FastQC.using(subdir:"3ends"), bowtie2_pe + BAMindexer + BamQC + SingleReads3ends + BAMindexer + bam2bedD + [ bedcoverage, bed2bw + rfd ] ] ] + 
-//	   collectBpipeLogs + MultiQC
+//	   [ FastQC.using(subdir="raw"),
+//		Barcode5ends + [ Cutadapt_5ends + [ FastQC.using(subdir:"5ends"), bowtie2_pe + BAMindexer + BamQC + SingleReads5ends + BAMindexer + bam2bedD5ends + [ bedcoverage5ends + bedcoverage, bed2bw ] ] ], 
+//		Barcode3ends + [ Cutadapt_3ends + [ FastQC.using(subdir:"3ends"), bowtie2_pe + BAMindexer + BamQC + SingleReads3ends + BAMindexer + bam2bedD + [ bedcoverage3ends + bedcoverage, bed2bw ] ] ] ] + 
+//	   collectBpipeLogs + MultiQC + shinyReports
 //}
