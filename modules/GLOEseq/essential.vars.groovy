@@ -22,7 +22,7 @@ ESSENTIAL_EB3=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI.bed" // Expected Not
 
 ESSENTIAL_RE_3end=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI_3end_saccer3.bed" // Expected 3'end breaks in the genome
 ESSENTIAL_RE_5end=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/NotI_5end_saccer3.bed" // Expected 5'end breaks in the genome
-ESSENTIAL_QPCR=ESSENTIAL_PROJECT + "/qpcr_perc_cut_efficiency.txt" // qPCR cutting efficiency results
+ESSENTIAL_QPCR=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/qpcr_perc_cut_efficiency.txt" // qPCR cutting efficiency results
 
 //global vars that will be reused in some global vars
 PROJECT=ESSENTIAL_PROJECT
