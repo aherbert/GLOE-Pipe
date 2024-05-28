@@ -1,0 +1,4 @@
+Samples	qPCR
+SampleName1	37.4
+SampleName2	35.38
+SampleName3	34.59
