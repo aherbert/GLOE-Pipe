@@ -13,6 +13,12 @@ load MODULE_FOLDER + "GLOEseq/cutadapt.module.groovy"
 load MODULE_FOLDER + "GLOEseq/cutadapt_pe.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/cutadapt_pe.module.groovy"
 
+load MODULE_FOLDER + "GLOEseq/cutadapt_5ends.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/cutadapt_5ends.module.groovy"
+
+load MODULE_FOLDER + "GLOEseq/cutadapt_3ends.vars.groovy"
+load MODULE_FOLDER + "GLOEseq/cutadapt_3ends.module.groovy"
+
 load MODULE_FOLDER + "GLOEseq/fastqc.vars.groovy"
 load MODULE_FOLDER + "GLOEseq/fastqc.module.groovy"
 
