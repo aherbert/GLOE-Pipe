@@ -613,6 +613,11 @@ GLOEhelper.ALPHA.3end <- function() {
     total_reads_noChrM <- lapply(samples_3ends_total_reads_noChrM, read.delim, head=F)
     total_reads_noChrM <- do.call(rbind, total_reads_noChrM)
 
+    # Perc nuclear reads
+    samples_3ends_perc_nuclear_reads <- list.files(paste0(SHINYREPS_ALPHA, "/3end"), pattern=".perc_nuclear_reads.txt$", recursive=T, full.names=T)
+    perc_nuclear_reads <- lapply(samples_3ends_perc_nuclear_reads, read.delim, head=F)
+    perc_nuclear_reads <- do.call(rbind, perc_nuclear_reads)
+
     # Breaks genome
     samples_3ends_breaks_genome <- list.files(paste0(SHINYREPS_ALPHA, "/3end"), pattern=".breaks_genome.txt$", recursive=T, full.names=T)
     breaks_genome <- lapply(samples_3ends_breaks_genome, read.delim, head=F)
@@ -627,10 +632,10 @@ GLOEhelper.ALPHA.3end <- function() {
     samples <- gsub(".R1.m.end3.trimmed.sr.alpha.txt", "", basename(samples_3ends_alpha))
     samples <- gsub(SHINYREPS_PREFIX, "", samples)
 
-    df <- cbind(samples, "3end", total_reads_noChrM, perc_reads_quant_sites, alpha, breaks_genome)
-    colnames(df) <- c("sample_name", "end_type", "total_count", "perc_quant_site", "alpha", "breaks_per_genome")
+    df <- cbind(samples, "3end", total_reads_noChrM, perc_nuclear_reads, perc_reads_quant_sites, alpha, breaks_genome)
+    colnames(df) <- c("sample_name", "end_type", "total_count", "perc_nuclear_reads", "perc_quant_site", "alpha", "breaks_per_genome")
 
-    pal <- brewer.pal(3, "BuGn")
+    pal <- brewer.pal(4, "BuGn")
 
     total_count.p <- ggplot(df, aes(sample_name,total_count/1e7)) +
                     geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[1]) +
@@ -638,14 +643,20 @@ GLOEhelper.ALPHA.3end <- function() {
                     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4),
                          axis.title = element_text(size = 7))
 
+    nuclear_reads.p <- ggplot(df, aes(sample_name,perc_nuclear_reads)) +
+                    geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[2]) +
+                    labs(x="", y="% nuclear reads") +
+                    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4),
+                         axis.title = element_text(size = 7))
+
     quant_site.p <- ggplot(df, aes(sample_name,perc_quant_site)) +
-                   geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[2]) +
+                   geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[3]) +
                    labs(x="", y="% reads at quantification sites") +
                    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4),
                          axis.title = element_text(size = 7))
 
     breaks_genome.p <- ggplot(df, aes(sample_name,breaks_per_genome, fill = end_type)) +
-                      geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[3]) +
+                      geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[4]) +
                       labs(x="", y="Breaks per genome") +
                       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4),
                          axis.title = element_text(size = 7))
@@ -679,7 +690,7 @@ GLOEhelper.ALPHA.3end <- function() {
                                      axis.title = element_text(size = 7)) +
                                labs(title = "3' end", y = "# reads per quant site / Total # reads at quant sites per samples * 100")
 
-    return(list(table.3end = kable(as.data.frame(df), align="c", output=F, format="markdown" , row.names=FALSE), total_count.p = total_count.p, quant_site.p = quant_site.p, breaks_genome.p = breaks_genome.p, reads_quant.plot = reads_quant.plot ))
+    return(list(table.3end = kable(as.data.frame(df), align="c", output=F, format="markdown" , row.names=FALSE), total_count.p = total_count.p, nuclear_reads.p = nuclear_reads.p, quant_site.p = quant_site.p, breaks_genome.p = breaks_genome.p, reads_quant.plot = reads_quant.plot ))
      
 }
 
@@ -702,6 +713,13 @@ GLOEhelper.ALPHA.5end <- function() {
     total_reads_noChrM <- lapply(samples_5ends_total_reads_noChrM, read.delim, head=F)
     total_reads_noChrM <- do.call(rbind, total_reads_noChrM)
 
+
+    # Perc nuclear reads
+    samples_5ends_perc_nuclear_reads <- list.files(paste0(SHINYREPS_ALPHA, "/5end"), pattern=".perc_nuclear_reads.txt$", recursive=T, full.names=T)
+    perc_nuclear_reads <- lapply(samples_5ends_perc_nuclear_reads, read.delim, head=F)
+    perc_nuclear_reads <- do.call(rbind, perc_nuclear_reads)
+
+
     # Breaks genome
     samples_5ends_breaks_genome <- list.files(paste0(SHINYREPS_ALPHA, "/5end"), pattern=".breaks_genome.txt$", recursive=T, full.names=T)
     breaks_genome <- lapply(samples_5ends_breaks_genome, read.delim, head=F)
@@ -716,10 +734,10 @@ GLOEhelper.ALPHA.5end <- function() {
     samples <- gsub(".R1.m.end5.trimmed.sr.alpha.txt", "", basename(samples_5ends_alpha))
     samples <- gsub(SHINYREPS_PREFIX, "", samples)
 
-    df <- cbind(samples, "5end", total_reads_noChrM, perc_reads_quant_sites, alpha, breaks_genome)
-    colnames(df) <- c("sample_name", "end_type", "total_count", "perc_quant_site", "alpha", "breaks_per_genome")
+    df <- cbind(samples, "5end", total_reads_noChrM, perc_nuclear_reads, perc_reads_quant_sites, alpha, breaks_genome)
+    colnames(df) <- c("sample_name", "end_type", "total_count", "perc_nuclear_reads", "perc_quant_site", "alpha", "breaks_per_genome")
 
-    pal <- brewer.pal(3, "BuGn")
+    pal <- brewer.pal(4, "BuGn")
 
     total_count.p <- ggplot(df, aes(sample_name,total_count/1e7)) +
                     geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[1]) +
@@ -727,14 +745,21 @@ GLOEhelper.ALPHA.5end <- function() {
                     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4),
                          axis.title = element_text(size = 7))
 
+    nuclear_reads.p <- ggplot(df, aes(sample_name,perc_nuclear_reads)) +
+                    geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[2]) +
+                    labs(x="", y="% nuclear reads") +
+                    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4),
+                         axis.title = element_text(size = 7))
+
+
     quant_site.p <- ggplot(df, aes(sample_name,perc_quant_site)) +
-                   geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[2]) +
+                   geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[3]) +
                    labs(x="", y="% reads at quantification sites") +
                    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4),
                          axis.title = element_text(size = 7))
 
     breaks_genome.p <- ggplot(df, aes(sample_name,breaks_per_genome)) +
-                      geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[3]) +
+                      geom_bar(stat = "identity", position = "stack", width = 0.8, show.legend = FALSE, fill = pal[4]) +
                       labs(x="", y="Breaks per genome") +
                       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1, size = 4),
                          axis.title = element_text(size = 7))
@@ -768,6 +793,6 @@ GLOEhelper.ALPHA.5end <- function() {
                                      axis.title = element_text(size = 7)) +
                                labs(title = "5' end", y = "# reads per quant site / Total # reads at quant sites per samples * 100")
 
-    return(list(table.5end = kable(as.data.frame(df), align="c", output=F, format="markdown" , row.names=FALSE), total_count.p = total_count.p, quant_site.p = quant_site.p, breaks_genome.p = breaks_genome.p, reads_quant.plot = reads_quant.plot ))
+    return(list(table.5end = kable(as.data.frame(df), align="c", output=F, format="markdown" , row.names=FALSE), total_count.p = total_count.p, nuclear_reads.p = nuclear_reads.p, quant_site.p = quant_site.p, breaks_genome.p = breaks_genome.p, reads_quant.plot = reads_quant.plot ))
      
 }
