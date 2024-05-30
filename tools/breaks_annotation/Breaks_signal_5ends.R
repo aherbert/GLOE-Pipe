@@ -33,8 +33,8 @@ cat(runstr)
 
 qPCR <- read.table(qPCR, sep="\t", header=T)
 
-x <- strsplit(basename(file_b), "_")[[1]][1:5]
-x <- paste(x[1], x[2], x[3] , x[4], x[5],  sep="_")
+x <- strsplit(basename(file_b), "[_/.]")[[1]][1:8]
+x <- paste(x[1], x[2], x[3] , x[4], x[5], x[6], x[7], x[8],  sep="_")
 qPCR_value <- qPCR[grep(x, qPCR$Samples),]$qPCR/100
 
 # Read BED files
@@ -56,6 +56,11 @@ alpha <- (sum(ranges_a$count)/length(breaks_norm))/qPCR_value
 
 # Total # reads (no chrM)
 total_reads_noChrM <- dim(gr_b[gr_b$seqnames != "chrM",])[1]
+
+# Nuclear reads
+ChrM <- dim(gr_b[gr_b$seqnames == "chrM",])[1]
+perc_nuclear_reads <- (100/(as.numeric(total_reads_noChrM) + as.numeric(ChrM))*as.numeric(total_reads_noChrM))
+
 # % reads at quantification sites
 perc_reads_quant_sites <- (100/total_reads_noChrM)*sum(ranges_a$count)
 # Breaks per genome
@@ -72,6 +77,7 @@ output_file3 <- paste0(out, "/", y, ".total_reads_noChrM.txt")
 output_file4 <- paste0(out, "/", y, ".perc_reads_quant_sites.txt")
 output_file5 <- paste0(out, "/", y, ".breaks_genome.txt")
 output_file6 <- paste0(out, "/", y, ".reads_quant_sites.txt")
+output_file7 <- paste0(out, "/", y, ".perc_nuclear_reads.txt")
 
 write.table(as.data.frame(alpha), file = output_file1, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
 write.table(as.data.frame(breaks_norm), file = output_file2, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
@@ -79,3 +85,4 @@ write.table(as.data.frame(total_reads_noChrM), file = output_file3, sep = "\t", 
 write.table(as.data.frame(perc_reads_quant_sites), file = output_file4, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
 write.table(as.data.frame(breaks_genome), file = output_file5, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
 write.table(as.data.frame(ranges_a), file = output_file6, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
+write.table(as.data.frame(perc_nuclear_reads), file = output_file7, sep = "\t", quote = FALSE, row.names = FALSE, col.names = FALSE)
