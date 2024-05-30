@@ -139,7 +139,7 @@ cat(alpha$table.3end, sep="\n")
 cat("\n", fill = T)
 
 cat("### Plot relevant stats\n", fill=T)
-grid.arrange(alpha$total_count.p, alpha$quant_site.p, alpha$breaks_genome.p, nrow = 2)
+grid.arrange(alpha$total_count.p, alpha$nuclear_reads.p, alpha$quant_site.p, alpha$breaks_genome.p, nrow = 2)
 cat("\n", fill = T)
 
 cat("### Plot reads counts at each site used for quantification normalized against total number of reads at all sites per sample\n", fill=T)
@@ -158,7 +158,7 @@ cat(alpha$table.5end, sep="\n")
 cat("\n", fill = T)
 
 cat("### Plot relevant stats\n", fill=T)
-grid.arrange(alpha$total_count.p, alpha$quant_site.p, alpha$breaks_genome.p, nrow = 2)
+grid.arrange(alpha$total_count.p, alpha$nuclear_reads.p, alpha$quant_site.p, alpha$breaks_genome.p, nrow = 2)
 cat("\n", fill = T)
 
 cat("### Plot reads counts at each site used for quantification normalized against total number of reads at all sites per sample\n", fill=T)
