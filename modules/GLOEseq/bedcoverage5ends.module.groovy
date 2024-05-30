@@ -35,7 +35,8 @@ bedcoverage5ends = {
                 bedToBam -i $input -g $ESSENTIAL_BOWTIE_GENOME_INDEX > ${input.prefix}.bam  &&
                 samtools index ${input.prefix}.bam &&
 
-                SCALE=\$( cat ${ALPHA}/5end/\$(basename ${input.prefix}).alpha.txt) &&
+                ALPHA=\$( cat ${ALPHA}/5end/\$(basename ${input.prefix}).alpha.txt) &&
+                SCALE=\$(echo "1/\$ALPHA" | bc -l) &&
 
                 bamCoverage $BEDCOVERAGE_FLAGS --scaleFactor \${SCALE} --bam ${input.prefix}.bam -o ${output.prefix}.bw &&
             
