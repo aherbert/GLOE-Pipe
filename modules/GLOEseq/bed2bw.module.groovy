@@ -23,7 +23,7 @@ bed2bw = {
 
 
 			CHRSIZES=${TMP}/\$(basename ${input.prefix}).bam2bw.chrsizes &&
-			samtools idxstats ${MAPPED}/\$(basename ${input.prefix}).bam | cut -f1-2 > ${CHRSIZES} &&
+			samtools idxstats ${MAPPED}/\$(basename ${input.prefix}).bam | cut -f1-2 | grep -v '^\\*' > ${CHRSIZES} &&
 			sortBed -i $input | genomeCoverageBed -bg -i stdin -trackline -g ${CHRSIZES} > ${output.prefix}.bedgraph &&
 			sortBed -i $input | genomeCoverageBed -bg -i stdin -trackline -g ${CHRSIZES} -strand + > ${output.prefix}.fwd.bedgraph &&
 			sortBed -i $input | genomeCoverageBed -bg -i stdin -trackline -g ${CHRSIZES} -strand - > ${output.prefix}.rev.bedgraph &&
