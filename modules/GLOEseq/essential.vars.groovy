@@ -1,8 +1,8 @@
-ESSENTIAL_PROJECT=".../project"   // full path to the project directory
-ESSENTIAL_TRIMMOMATIC=".../TruSeq3-SE.fa" // full path to the adapter fasta file
+ESSENTIAL_PROJECT="/data/gloe-pipe-test"   // full path to the project directory
+ESSENTIAL_TRIMMOMATIC="/data/genomes/TruSeq3-SE.fa" // full path to the adapter fasta file
 ESSENTIAL_MIN_READLENGTH=36
-ESSENTIAL_BOWTIE_REF=".../genome" // full path to the reference index files for Bowtie2
-ESSENTIAL_BOWTIE_GENOME_INDEX="../saccer3.chrom.sizes" // chromosome sizes file of the reference genome
+ESSENTIAL_BOWTIE_REF="/data/genomes/saccer3/saccer3" // full path to the reference index files for Bowtie2
+ESSENTIAL_BOWTIE_GENOME_INDEX="/data/genomes/saccer3/sacCer3.chrom.sizes" // chromosome sizes file of the reference genome
 ESSENTIAL_PAIRED="no" // single-end mode ("no") or paired-end mode ("yes") according to the sequencing mode.
 ESSENTIAL_TXDB="TxDb.Scerevisiae.UCSC.sacCer3.sgdGene" // needed for breaks annotation
 ESSENTIAL_ANNODB="org.Sc.sgd.db" // needed for breaks annotation
@@ -51,11 +51,11 @@ COUNTS=PROJECT + "/bed/counts"
 TPM=PROJECT + "/bed/tpm"
 
 //Necessary for Fastqscreen
-ESSENTIAL_BOWTIE_Human="/fsimb/common/genomes/homo_sapiens/gencode/release-25_GRCh38.p7/full/index/bowtie2/GRCh38.p7.genome"
-ESSENTIAL_BOWTIE_Yeast="/fsimb/common/genomes/saccharomyces_cerevisiae/ensembl/R64/canonical/index/bowtie2/2.3.2/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel"
-ESSENTIAL_BOWTIE_Bovine="/fsimb/common/genomes/bos_taurus/ensembl/3.1/full/index/bowtie2/2.2.9/UMD3.1"
-ESSENTIAL_BOWTIE_Bacteria="/fsimb/common/genomes/Escherichia_coli/ensembl/full/index/bowtie2/Escherichia_coli_str_k_12_substr_dh10b.ASM1942v1.31.dna.genome"
-ESSENTIAL_BOWTIE_Mycoplasma="/fsimb/common/genomes/contaminants/fastqscreen_references/mycoplasma/v1/index/bowtie2/2.3.4.3/mycoplasma_all_ref"
-ESSENTIAL_BOWTIE_PhiX="/fsimb/common/genomes/phix/19930428/NCBI/index/bowtie2/2.3.4.3/ncbi_phix"
-ESSENTIAL_BOWTIE_ERCC="/fsimb/common/genomes/ERCC/index/bowtie2/2.3.4.3/ERCC92"
-ESSENTIAL_BOWTIE_rRNA="/fsimb/common/genomes/contaminants/fastqscreen_references/rrna/v1/index/bowtie2/2.3.4.3/hs_mm_ce_dm_rn_dr_xt_rRNA"
+ESSENTIAL_BOWTIE_Human="/data/FastQ_Screen_Genomes/Human/Homo_sapiens.GRCh38"
+ESSENTIAL_BOWTIE_Yeast="/data/FastQ_Screen_Genomes/Yeast/Saccharomyces_cerevisiae.R64-1-1"
+ESSENTIAL_BOWTIE_Bovine="/data/FastQ_Screen_Genomes/Bovine/ARS-UCD2.0"
+ESSENTIAL_BOWTIE_Bacteria="/data/FastQ_Screen_Genomes/E_coli/Ecoli"
+ESSENTIAL_BOWTIE_Mycoplasma="/data/FastQ_Screen_Genomes/Mycoplasma/Mycoplasma"
+ESSENTIAL_BOWTIE_PhiX="/data/FastQ_Screen_Genomes/PhiX/phi_plus_SNPs"
+ESSENTIAL_BOWTIE_ERCC="/data/FastQ_Screen_Genomes/ERCC/ERCC92"
+ESSENTIAL_BOWTIE_rRNA="/data/FastQ_Screen_Genomes/rRNA/GRCm38_rRNA"
