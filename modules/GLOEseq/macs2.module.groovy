@@ -6,7 +6,7 @@ macs2 = {
         author: "Giuseppe Petrosino"
 
     output.dir = RESULTS + "/macs2"
-    MACS2_FLAGS= MACS2_MFOLD  + " " + 
+    def MACS2_FLAGS= MACS2_MFOLD  + " " + 
                  MACS2_GSIZE  + " " + 
                  MACS2_BWIDTH + " " + 
 		 MACS2_FORMAT + " " +
