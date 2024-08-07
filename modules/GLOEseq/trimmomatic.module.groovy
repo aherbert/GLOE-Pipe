@@ -13,7 +13,7 @@ Trimmomatic = {
 		exec """
 			module load trimmomatic/${TRIMMOMATIC_VERSION} &&
 
-                        java -jar ${TOOL_TRIMMOMATIC}/trimmomatic-0.36.jar $Trimmomatic_FLAG1 $input $output $Trimmomatic_FLAG2	
+                        java -jar ${TOOL_TRIMMOMATIC}/trimmomatic-${TRIMMOMATIC_VERSION}.jar $Trimmomatic_FLAG1 $input $output $Trimmomatic_FLAG2
 		""","Trimmomatic"
 	}
 
