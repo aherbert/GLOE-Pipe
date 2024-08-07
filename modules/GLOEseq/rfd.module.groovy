@@ -6,7 +6,7 @@ rfd = {
 		author: "Giuseppe Petrosino"
 		
 		output.dir=RFD
-		RFD_FLAGS = RFD_CORES + RFD_BINSIZE
+		def RFD_FLAGS = RFD_CORES + RFD_BINSIZE
 	
 	transform(".bw") to (".rfd.bw") {
 		exec """

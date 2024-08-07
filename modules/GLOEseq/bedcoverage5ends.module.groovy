@@ -6,7 +6,7 @@ bedcoverage5ends = {
 		author: "Giuseppe Petrosino"
 		
 	output.dir=TRACKS_RE_NORMALIZED
-	BEDCOVERAGE_FLAGS = BEDCOVERAGE_CORES + " " + BEDCOVERAGE_OTHER
+	def BEDCOVERAGE_FLAGS = BEDCOVERAGE_CORES + " " + BEDCOVERAGE_OTHER
 
     breaks_signal_5END_FLAGS = BREAKS_5END + " " + QPCR_CUT_EFF + " " + BREAKS_OUTDIR_5END + " "
 	

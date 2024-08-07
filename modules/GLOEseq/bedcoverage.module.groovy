@@ -6,7 +6,7 @@ bedcoverage = {
 		author: "Giuseppe Petrosino"
 		
 	output.dir=TRACKS_NORMALIZED
-	BEDCOVERAGE_FLAGS = BEDCOVERAGE_CORES + " " + BEDCOVERAGE_OTHER
+	def BEDCOVERAGE_FLAGS = BEDCOVERAGE_CORES + " " + BEDCOVERAGE_OTHER
 	
 	transform(".bed") to (".normalized.bw") {
 		exec """
