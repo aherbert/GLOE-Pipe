@@ -24,14 +24,16 @@ bed2bw = {
 
 			CHRSIZES=${TMP}/\$(basename ${input.prefix}).bam2bw.chrsizes &&
 			samtools idxstats ${MAPPED}/\$(basename ${input.prefix}).bam | cut -f1-2 | grep -v '^\\*' > ${CHRSIZES} &&
-			sortBed -i $input | genomeCoverageBed -bg -i stdin -trackline -g ${CHRSIZES} > ${output.prefix}.bedgraph &&
-			sortBed -i $input | genomeCoverageBed -bg -i stdin -trackline -g ${CHRSIZES} -strand + > ${output.prefix}.fwd.bedgraph &&
-			sortBed -i $input | genomeCoverageBed -bg -i stdin -trackline -g ${CHRSIZES} -strand - > ${output.prefix}.rev.bedgraph &&
+			sort -k1,1 -k2,2n $input -o ${output.prefix}.sorted.bed &&
+			genomeCoverageBed -bg -i ${output.prefix}.sorted.bed -trackline -g ${CHRSIZES} > ${output.prefix}.bedgraph &&
+			genomeCoverageBed -bg -i ${output.prefix}.sorted.bed -trackline -g ${CHRSIZES} -strand + > ${output.prefix}.fwd.bedgraph &&
+			genomeCoverageBed -bg -i ${output.prefix}.sorted.bed -trackline -g ${CHRSIZES} -strand - > ${output.prefix}.rev.bedgraph &&
 			bedGraphToBigWig ${output.prefix}.bedgraph ${CHRSIZES} $output &&
 			bedGraphToBigWig ${output.prefix}.fwd.bedgraph ${CHRSIZES} ${output.prefix}.fwd.bw &&
 			bedGraphToBigWig ${output.prefix}.rev.bedgraph ${CHRSIZES} ${output.prefix}.rev.bw &&
 
 
+			rm ${output.prefix}.sorted.bed &&
 			rm ${output.prefix}.bedgraph &&
 			rm ${output.prefix}.fwd.bedgraph &&
 			rm ${output.prefix}.rev.bedgraph &&
