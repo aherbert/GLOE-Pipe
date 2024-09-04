@@ -81,7 +81,7 @@ dev.off()
 # create upsetplot 
 for(i in 1:length(breakAnno)){
   CairoPNG(file=paste0(out, "/", filename[[i]], "_GLOEseq_UpSetplot.png"), width = 700, height = 500)
-  upsetplot(breakAnno[[i]])
+  plot(upsetplot(breakAnno[[i]]))
   dev.off()
 }
 
