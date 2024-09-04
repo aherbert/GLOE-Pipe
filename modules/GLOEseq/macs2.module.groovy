@@ -39,14 +39,14 @@ macs2 = {
                 CONTROLnameFOR=\${Cname}"_for" && 
                 CONTROLnameREV=\${Cname}"_rev";   
                 
-                if [ "\$BED" != "\$INPUT" ]; then
+                if [ "\$BED" == "\$TREATMENT" ]; then
                     echo "\${Tname} vs \${Cname}" >> $output &&
                     macs2 callpeak -t $MACS2_INPUT/\$TREATMENTFOR -c $MACS2_INPUT/\$CONTROLFOR -n \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2 $MACS2_FLAGS &&
                     macs2 callpeak -t $MACS2_INPUT/\$TREATMENTREV -c $MACS2_INPUT/\$CONTROLREV -n \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2 $MACS2_FLAGS &&
                     if [ \$? -ne 0 ]; then rm $output; fi &&
                     awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "+"}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_summits.bed > \${CompName}_macs2.bed &&
                     awk '{print \$1 "\\t" \$2 "\\t" \$3 "\\t" \$4 "\\t" \$5 "\\t" "-"}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_summits.bed >> \${CompName}_macs2.bed &&
-                    bedtools sort -i \${CompName}_macs2.bed > \${CompName}_macs2_summits.bed &&
+                    sort -k1,1 -k2,2n \${CompName}_macs2.bed -o \${CompName}_macs2_summits.bed &&
                     awk '{if(NR>20)print}' \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_peaks.xls > \${CompName}_macs2_peaks.xls &&
                     awk '{if(NR>21)print}' \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_peaks.xls >> \${CompName}_macs2_peaks.xls &&
                     cat \${TREATMENTnameFOR}.vs.\${CONTROLnameFOR}_macs2_peaks.narrowPeak \${TREATMENTnameREV}.vs.\${CONTROLnameREV}_macs2_peaks.narrowPeak > \${CompName}_macs2_peaks.narrowPeak && 
