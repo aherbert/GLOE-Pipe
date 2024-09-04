@@ -110,7 +110,7 @@ load MODULE_FOLDER + "GLOEseq/shinyreports.module.groovy"
 
 //MAIN PIPELINE TASK - SINGLE END READS with Trimmomatic (INDIRECT mode - default)
 run {
-	"%.fastq.gz" * [ FastQC.using(subdir="raw"), Trimmomatic + [ FastQC.using(subdir:"trimmed"), bowtie2 + BAMindexer + BamQC + bam2bedI + [ bedcoverage, bed2bw + rfd ] + macs2 ] ] + [ breaks_annotation, breaks_detected ] + collectBpipeLogs + MultiQC
+	"%.fastq.gz" * [ FastQC.using(subdir="raw"), Trimmomatic + [ FastQC.using(subdir:"trimmed"), bowtie2 + BAMindexer + BamQC + bam2bedI + [ bedcoverage, bed2bw + rfd ] + macs2 ] ] + [ breaks_annotation ] + collectBpipeLogs + MultiQC
 }
 
 //MAIN PIPELINE TASK - SINGLE END READS with Cutadapt (INDIRECT mode - default) 
