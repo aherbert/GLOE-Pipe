@@ -86,11 +86,12 @@ for(i in 1:length(breakAnno)){
 }
 
 # create Breaks coverage plot
-for(i in 1:length(breakAnno)){
-  CairoPNG(file=paste0(out, "/", filename[[i]], "_GLOEseq_Breaks_Coverageplot.png"), width = 700, height = 500)
-  plot(covplot(breaks[[i]],weightCol="score", title= "GLOEseq breaks over Chromosomes", ylab=("-log10(qvalue))")))
-  dev.off()
-}
+# Note: This plot takes too long (i.e. days) when the number of annotations is large
+#for(i in 1:length(breakAnno)){
+#  CairoPNG(file=paste0(out, "/", filename[[i]], "_GLOEseq_Breaks_Coverageplot.png"), width = 700, height = 500)
+#  plot(covplot(breaks[[i]],weightCol="score", title= "GLOEseq breaks over Chromosomes", ylab=("-log10(qvalue))")))
+#  dev.off()
+#}
 
 # create % of breaks per chromosome plot
 # for(i in 1:length(breakAnno)){
@@ -114,8 +115,15 @@ for(i in 1:length(breakAnno)){
 
 # create xls output contains the breaks annotation
 outputData <- lapply(breakAnno, as.data.frame)
-write.xlsx(outputData, file=paste0(out, "/Breaks_Annotation.xls"))
+# Note: When the number of annotation is large saving as xlsx is not possible
+# openxlsx library fails when joining the shared strings object that reuses strings across sheets
+# writexl library fails as the output is above 2^20 lines
+# So we save as CSV
+#write.xlsx(outputData, file=paste0(out, "/Breaks_Annotation.xlsx"))
+for (i in 1:length(outputData)) {
+  write.table(outputData[[i]], paste0(out, "/", filename[[i]], ".csv"), quote=FALSE, sep="\t", row.names=FALSE)
+}
 
 # save the sessionInformation
 writeLines(capture.output(sessionInfo()), paste(out, "/GLOEseq_Breaks_Annotation_session_info.txt", sep=""))
-save(breakFiles,breaks,breakAnno,filename,outputData, file=paste0(out,"/Breaks_Annotation.RData"))
+save(breakFiles,breaks,breakAnno,filename,file=paste0(out,"/Breaks_Annotation.RData"))
