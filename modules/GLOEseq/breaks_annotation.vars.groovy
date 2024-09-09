@@ -5,4 +5,4 @@ breaks_annotation_ORGDB="orgDb=" + ESSENTIAL_ANNODB
 breaks_annotation_REGIONTSS="regionTSS=" + ESSENTIAL_TSS
 breaks_annotation_OUTDIR="out="+ RESULTS+ "/breaks_annotation"
 breaks_annotation_INDEX="index=" + ESSENTIAL_BOWTIE_GENOME_INDEX
-breaks_annotation_EXTRA=""
+breaks_annotation_EXTRA="covMax=" + ESSENTIAL_COV_MAX

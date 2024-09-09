@@ -15,6 +15,7 @@ ESSENTIAL_BEDCOVERAGE="--smoothLength 1 --binSize 1 --normalizeUsing BPM"  // de
                                                                            // If you want to exclude chromsomes for normalisation e.g. chrM add 
                                                                            // the following parameter --ignoreForNormalization chrM
 ESSENTIAL_RFD_BINSIZE=1000 // Size of the bins, in bases, for the output of the RFD bigwig file
+ESSENTIAL_COV_MAX=100000 // Maximum peaks for the coverage plot
 
 ESSENTIAL_EB1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected BsrDI breaks in the yeast genome
 ESSENTIAL_EB2=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/Nb_BsrDI.bed" // Expected NbBsrDI breaks in the yeast genome
