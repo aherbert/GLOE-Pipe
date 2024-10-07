@@ -1,8 +1,8 @@
-ESSENTIAL_PROJECT="/data/gloe-pipe-test"   // full path to the project directory
-ESSENTIAL_TRIMMOMATIC="/data/genomes/TruSeq3-SE.fa" // full path to the adapter fasta file
+ESSENTIAL_PROJECT="/mnt/lustre/projects/gdsc/gloepipe/gloe-pipe-test"   // full path to the project directory
+ESSENTIAL_TRIMMOMATIC="/mnt/lustre/projects/gdsc/gloepipe/genomes/TruSeq3-SE.fa" // full path to the adapter fasta file
 ESSENTIAL_MIN_READLENGTH=36
-ESSENTIAL_BOWTIE_REF="/data/genomes/saccer3/saccer3" // full path to the reference index files for Bowtie2
-ESSENTIAL_BOWTIE_GENOME_INDEX="/data/genomes/saccer3/sacCer3.chrom.sizes" // chromosome sizes file of the reference genome
+ESSENTIAL_BOWTIE_REF="/mnt/lustre/projects/gdsc/gloepipe/genomes/saccer3/saccer3" // full path to the reference index files for Bowtie2
+ESSENTIAL_BOWTIE_GENOME_INDEX="/mnt/lustre/projects/gdsc/gloepipe/genomes/saccer3/sacCer3.chrom.sizes" // chromosome sizes file of the reference genome
 ESSENTIAL_PAIRED="no" // single-end mode ("no") or paired-end mode ("yes") according to the sequencing mode.
 ESSENTIAL_TXDB="TxDb.Scerevisiae.UCSC.sacCer3.sgdGene" // needed for breaks annotation
 ESSENTIAL_ANNODB="org.Sc.sgd.db" // needed for breaks annotation
@@ -51,11 +51,11 @@ COUNTS=PROJECT + "/bed/counts"
 TPM=PROJECT + "/bed/tpm"
 
 //Necessary for Fastqscreen
-ESSENTIAL_BOWTIE_Human="/data/FastQ_Screen_Genomes/Human/Homo_sapiens.GRCh38"
-ESSENTIAL_BOWTIE_Yeast="/data/FastQ_Screen_Genomes/Yeast/Saccharomyces_cerevisiae.R64-1-1"
-ESSENTIAL_BOWTIE_Bovine="/data/FastQ_Screen_Genomes/Bovine/ARS-UCD2.0"
-ESSENTIAL_BOWTIE_Bacteria="/data/FastQ_Screen_Genomes/E_coli/Ecoli"
-ESSENTIAL_BOWTIE_Mycoplasma="/data/FastQ_Screen_Genomes/Mycoplasma/Mycoplasma"
-ESSENTIAL_BOWTIE_PhiX="/data/FastQ_Screen_Genomes/PhiX/phi_plus_SNPs"
-ESSENTIAL_BOWTIE_ERCC="/data/FastQ_Screen_Genomes/ERCC/ERCC92"
-ESSENTIAL_BOWTIE_rRNA="/data/FastQ_Screen_Genomes/rRNA/GRCm38_rRNA"
+ESSENTIAL_BOWTIE_Human="/mnt/lustre/projects/gdsc/gloepipe/FastQ_Screen_Genomes/Human/Homo_sapiens.GRCh38"
+ESSENTIAL_BOWTIE_Yeast="/mnt/lustre/projects/gdsc/gloepipe/FastQ_Screen_Genomes/Yeast/Saccharomyces_cerevisiae.R64-1-1"
+ESSENTIAL_BOWTIE_Bovine="/mnt/lustre/projects/gdsc/gloepipe/FastQ_Screen_Genomes/Bovine/ARS-UCD2.0"
+ESSENTIAL_BOWTIE_Bacteria="/mnt/lustre/projects/gdsc/gloepipe/FastQ_Screen_Genomes/E_coli/Ecoli"
+ESSENTIAL_BOWTIE_Mycoplasma="/mnt/lustre/projects/gdsc/gloepipe/FastQ_Screen_Genomes/Mycoplasma/Mycoplasma"
+ESSENTIAL_BOWTIE_PhiX="/mnt/lustre/projects/gdsc/gloepipe/FastQ_Screen_Genomes/PhiX/phi_plus_SNPs"
+ESSENTIAL_BOWTIE_ERCC="/mnt/lustre/projects/gdsc/gloepipe/FastQ_Screen_Genomes/ERCC/ERCC92"
+ESSENTIAL_BOWTIE_rRNA="/mnt/lustre/projects/gdsc/gloepipe/FastQ_Screen_Genomes/rRNA/GRCm38_rRNA"

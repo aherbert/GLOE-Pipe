@@ -1,5 +1,5 @@
 // variables containing the location of the used tools
-TOOL_DEPENDENCIES="/data/software" // your local tools folder
+TOOL_DEPENDENCIES="/mnt/lustre/projects/gdsc/gloepipe/tools" // your local tools folder
 PROJECT_DEPENDENCIES=ESSENTIAL_PROJECT + "/GLOEPipe/tools" 
 TOOL_TRIMMOMATIC=TOOL_DEPENDENCIES + "/trimmomatic/0.39/"
 TOOL_GLOEseq=PROJECT_DEPENDENCIES+ "/GLOEscripts"
