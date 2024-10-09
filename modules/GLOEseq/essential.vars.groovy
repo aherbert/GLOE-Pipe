@@ -1,20 +1,21 @@
-ESSENTIAL_PROJECT="/mnt/lustre/projects/gdsc/gloepipe/gloe-pipe-test"   // full path to the project directory
+ESSENTIAL_PROJECT="..."   // full path to the project directory
 ESSENTIAL_TRIMMOMATIC="/mnt/lustre/projects/gdsc/gloepipe/genomes/TruSeq3-SE.fa" // full path to the adapter fasta file
 ESSENTIAL_MIN_READLENGTH=36
-ESSENTIAL_BOWTIE_REF="/mnt/lustre/projects/gdsc/gloepipe/genomes/saccer3/saccer3" // full path to the reference index files for Bowtie2
-ESSENTIAL_BOWTIE_GENOME_INDEX="/mnt/lustre/projects/gdsc/gloepipe/genomes/saccer3/sacCer3.chrom.sizes" // chromosome sizes file of the reference genome
+ESSENTIAL_BOWTIE_REF="/mnt/lustre/projects/gdsc/gloepipe/genomes/hs1/hs1" // full path to the reference index files for Bowtie2
+ESSENTIAL_BOWTIE_GENOME_INDEX="/mnt/lustre/projects/gdsc/gloepipe/genomes/hs1/hs1.chrom.sizes" // chromosome sizes file of the reference genome
 ESSENTIAL_PAIRED="no" // single-end mode ("no") or paired-end mode ("yes") according to the sequencing mode.
-ESSENTIAL_TXDB="TxDb.Scerevisiae.UCSC.sacCer3.sgdGene" // needed for breaks annotation
-ESSENTIAL_ANNODB="org.Sc.sgd.db" // needed for breaks annotation
+ESSENTIAL_TXDB="/mnt/lustre/projects/gdsc/gloepipe/genomes/hs1/hs1.ncbiRefSeq.gtf" // needed for breaks annotation
+ESSENTIAL_ANNODB="org.Hs.eg.db" // needed for breaks annotation
 ESSENTIAL_TSS=200 // TSS region parameter from -200 to +200
 ESSENTIAL_FRAGLEN=200 // mean length of library inserts and also minimum peak size called by MACS2
-ESSENTIAL_MACS2_GSIZE="1.20E+07" // mappable genome size for MACS2 
+ESSENTIAL_MACS2_GSIZE="3.12E+09" // mappable genome size for MACS2
 ESSENTIAL_THREADS=4 // number of threads for parallel tasks
 ESSENTIAL_DUP="all" // relevant for MACS2, it instructs it to keep duplicate reads
 ESSENTIAL_BEDCOVERAGE="--smoothLength 1 --binSize 1 --normalizeUsing BPM"  // deepTools options for making normalised bigWig tracks
                                                                            // If you want to exclude chromsomes for normalisation e.g. chrM add 
                                                                            // the following parameter --ignoreForNormalization chrM
 ESSENTIAL_RFD_BINSIZE=1000 // Size of the bins, in bases, for the output of the RFD bigwig file
+ESSENTIAL_COV_MAX=100000 // Maximum peaks for the coverage plot
 
 ESSENTIAL_EB1=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/BsrDI.bed" // Expected BsrDI breaks in the yeast genome
 ESSENTIAL_EB2=ESSENTIAL_PROJECT + "/GLOEPipe/tools/REs/Nb_BsrDI.bed" // Expected NbBsrDI breaks in the yeast genome

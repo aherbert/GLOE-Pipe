@@ -20,6 +20,7 @@ library(ChIPseeker)
 library(openxlsx)
 library(Cairo)
 library(regioneR)
+library(GenomicFeatures)
 
 ##
 # get arguments from the command line
@@ -40,6 +41,7 @@ orgDb <- parseArgs(args, "orgDb=", "org.Sc.sgd.db") # genome wide annotation
 regionTSS <- parseArgs(args, "regionTSS=", 200, "as.numeric") # TSS region parameter 
 out <- parseArgs(args,"out=", "Breaks_Annotation") # output directory
 index <- parseArgs(args, "index=")
+covMax <- parseArgs(args, "covMax=", 100000, "as.numeric") # Max elements for the coverage plot
 
 runstr <- paste0("Call with: Rscript Breaks_Annotation.R [breakData=",breakData,"] [transcriptType=",transcriptType,"] [transcriptDb=",transcriptDb,"] [orgDb=",orgDb,"] [regionTSS=",regionTSS,"] [index=",index,"] [out=",out,"]")
 cat(runstr)
@@ -86,12 +88,18 @@ for(i in 1:length(breakAnno)){
 }
 
 # create Breaks coverage plot
-# Note: This plot takes too long (i.e. days) when the number of annotations is large
-#for(i in 1:length(breakAnno)){
-#  CairoPNG(file=paste0(out, "/", filename[[i]], "_GLOEseq_Breaks_Coverageplot.png"), width = 700, height = 500)
-#  plot(covplot(breaks[[i]],weightCol="score", title= "GLOEseq breaks over Chromosomes", ylab=("-log10(qvalue))")))
-#  dev.off()
-#}
+# Note: This plot takes too long (i.e. days) when the number of annotations is large.
+# The number to plot is limited to a random subset.
+for(i in 1:length(breakAnno)){
+  CairoPNG(file=paste0(out, "/", filename[[i]], "_GLOEseq_Breaks_Coverageplot.png"), width = 700, height = 500)
+  b <- breaks[[i]]
+  n <- length(b)
+  if (n > covMax) {
+    b <- b[sample(n, covMax)]
+  }
+  plot(covplot(b,weightCol="score", title= "GLOEseq breaks over Chromosomes", ylab=("-log10(qvalue))")))
+  dev.off()
+}
 
 # create % of breaks per chromosome plot
 # for(i in 1:length(breakAnno)){
