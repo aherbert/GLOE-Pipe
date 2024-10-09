@@ -1,4 +1,7 @@
 Treatment	Tname	Control	Cname	CompName
-Digested_sample_1.bed	Digested_sample_1	Undigested_sample_1.bed	Undigested_sample_1	Digested.vs.Undigested_S1
-Digested_sample_2.bed	Digested_sample_2	Undigested_sample_2.bed	Undigested_sample_2	Digested.vs.Undigested_S2
-Digested_sample_2.bed	Digested_sample_3	Undigested_sample_3.bed	Undigested_sample_3	Digested.vs.Undigested_S3
+BsrDI_rep1_trimmed.bed	BsrDI_rep1	Undigested_trimmed.bed	Undigested	BsrDI_rep1.vs.Undigested
+BsrDI_rep2_trimmed.bed	BsrDI_rep2	Undigested_trimmed.bed	Undigested	BsrDI_rep2.vs.Undigested
+NbBsrDI_NotI_1_10_rep1_trimmed.bed	NbBsrDIN_rep1	Undigested_trimmed.bed	Undigested	NbBsrDIN_rep1.vs.Undigested
+NbBsrDI_NotI_1_10_rep2_trimmed.bed	NbBsrDIN_rep2	Undigested_trimmed.bed	Undigested	NbBsrDIN_rep2.vs.Undigested
+NbBsrDI_rep1_trimmed.bed	NbBsrDI_rep1	Undigested_trimmed.bed	Undigested	NbBsrDIN_rep1.vs.Undigested
+NbBsrDI_rep2_trimmed.bed	NbBsrDI_rep2	Undigested_trimmed.bed	Undigested	NbBsrDIN_rep2.vs.Undigested
